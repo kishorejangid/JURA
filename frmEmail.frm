@@ -9,7 +9,6 @@ Begin VB.Form frmEmail
    ClientTop       =   0
    ClientWidth     =   8640
    Icon            =   "frmEmail.frx":0000
-   LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    ScaleHeight     =   5880
@@ -50,13 +49,13 @@ Begin VB.Form frmEmail
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   8438015
       TitleColor2     =   33023
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       BorderWidth     =   2
       Begin JURA.StylerButton cmdMin 

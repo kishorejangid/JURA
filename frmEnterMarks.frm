@@ -15,11 +15,11 @@ Begin VB.Form frmEnterMarks
    ShowInTaskbar   =   0   'False
    Begin vkUserContolsXP.vkCommand cmdInsert 
       Height          =   495
-      Left            =   720
+      Left            =   360
       TabIndex        =   32
       Top             =   7560
-      Width           =   5535
-      _ExtentX        =   9763
+      Width           =   6275
+      _ExtentX        =   11060
       _ExtentY        =   873
       Caption         =   "Insert"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -36,15 +36,15 @@ Begin VB.Form frmEnterMarks
    End
    Begin vkUserContolsXP.vkLabel lblExternals 
       Height          =   255
-      Left            =   4800
+      Left            =   4560
       TabIndex        =   31
       Top             =   2280
-      Width           =   975
-      _ExtentX        =   1720
+      Width           =   735
+      _ExtentX        =   1296
       _ExtentY        =   450
       BackColor       =   16777215
       BackStyle       =   0
-      Caption         =   "Externals:"
+      Caption         =   "Externals"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
          Size            =   8.25
@@ -70,15 +70,333 @@ Begin VB.Form frmEnterMarks
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   33023
       TitleColor2     =   8438015
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       BorderWidth     =   2
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   9
+         Left            =   5880
+         TabIndex        =   58
+         TabStop         =   0   'False
+         Top             =   6960
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   8
+         Left            =   5880
+         TabIndex        =   57
+         TabStop         =   0   'False
+         Top             =   6480
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   7
+         Left            =   5880
+         TabIndex        =   56
+         TabStop         =   0   'False
+         Top             =   6000
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   6
+         Left            =   5880
+         TabIndex        =   55
+         TabStop         =   0   'False
+         Top             =   5520
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   5
+         Left            =   5880
+         TabIndex        =   54
+         TabStop         =   0   'False
+         Top             =   5040
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   4
+         Left            =   5880
+         TabIndex        =   53
+         TabStop         =   0   'False
+         Top             =   4560
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   3
+         Left            =   5880
+         TabIndex        =   52
+         TabStop         =   0   'False
+         Top             =   4080
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   2
+         Left            =   5880
+         TabIndex        =   51
+         TabStop         =   0   'False
+         Top             =   3600
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   1
+         Left            =   5880
+         TabIndex        =   50
+         TabStop         =   0   'False
+         Top             =   3120
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin vkUserContolsXP.vkLabel lblResultTitle 
+         Height          =   255
+         Left            =   6000
+         TabIndex        =   49
+         Top             =   2280
+         Width           =   495
+         _ExtentX        =   873
+         _ExtentY        =   450
+         BackColor       =   16777215
+         BackStyle       =   0
+         Caption         =   "Result"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin vkUserContolsXP.vkLabel lblResult 
+         Height          =   375
+         Index           =   0
+         Left            =   5880
+         TabIndex        =   48
+         TabStop         =   0   'False
+         Top             =   2640
+         Visible         =   0   'False
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   661
+         BorderStyle     =   1
+         BorderColor     =   33023
+         BackColor       =   16777215
+         Caption         =   ""
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   12
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Alignment       =   2
+      End
+      Begin VB.ComboBox cmbSec 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   5520
+         TabIndex        =   47
+         Top             =   1080
+         Width           =   1095
+      End
+      Begin vkUserContolsXP.vkLabel lblSec 
+         Height          =   255
+         Left            =   4800
+         TabIndex        =   46
+         Top             =   1200
+         Width           =   615
+         _ExtentX        =   1085
+         _ExtentY        =   450
+         BackColor       =   16777215
+         BackStyle       =   0
+         Caption         =   "Section:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
       Begin VB.ComboBox cmbBatch 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -93,9 +411,9 @@ Begin VB.Form frmEnterMarks
          Left            =   1320
          TabIndex        =   45
          Top             =   1080
-         Width           =   2175
+         Width           =   1215
       End
-      Begin vkUserContolsXP.vkLabel vkLabel8 
+      Begin vkUserContolsXP.vkLabel lblBatch 
          Height          =   255
          Left            =   360
          TabIndex        =   44
@@ -142,7 +460,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   9
-         Left            =   720
+         Left            =   360
          TabIndex        =   42
          TabStop         =   0   'False
          Top             =   6960
@@ -174,7 +492,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   8
-         Left            =   720
+         Left            =   360
          TabIndex        =   41
          TabStop         =   0   'False
          Top             =   6480
@@ -206,7 +524,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   0
-         Left            =   720
+         Left            =   360
          TabIndex        =   40
          TabStop         =   0   'False
          Top             =   2640
@@ -238,7 +556,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   7
-         Left            =   720
+         Left            =   360
          TabIndex        =   39
          TabStop         =   0   'False
          Top             =   6000
@@ -270,7 +588,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   6
-         Left            =   720
+         Left            =   360
          TabIndex        =   38
          TabStop         =   0   'False
          Top             =   5520
@@ -302,7 +620,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   5
-         Left            =   720
+         Left            =   360
          TabIndex        =   37
          TabStop         =   0   'False
          Top             =   5040
@@ -334,7 +652,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   4
-         Left            =   720
+         Left            =   360
          TabIndex        =   36
          TabStop         =   0   'False
          Top             =   4560
@@ -366,7 +684,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   3
-         Left            =   720
+         Left            =   360
          TabIndex        =   35
          TabStop         =   0   'False
          Top             =   4080
@@ -398,7 +716,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   2
-         Left            =   720
+         Left            =   360
          TabIndex        =   34
          TabStop         =   0   'False
          Top             =   3600
@@ -430,7 +748,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtSubjcode 
          Height          =   375
          Index           =   1
-         Left            =   720
+         Left            =   360
          TabIndex        =   33
          TabStop         =   0   'False
          Top             =   3120
@@ -462,7 +780,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   9
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   23
          Top             =   6960
          Width           =   1335
@@ -492,7 +810,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   8
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   21
          Top             =   6480
          Width           =   1335
@@ -522,7 +840,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   7
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   19
          Top             =   6000
          Width           =   1335
@@ -552,7 +870,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   6
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   17
          Top             =   5520
          Width           =   1335
@@ -582,7 +900,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   5
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   15
          Top             =   5040
          Width           =   1335
@@ -612,7 +930,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   4
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   13
          Top             =   4560
          Width           =   1335
@@ -642,7 +960,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   3
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   11
          Top             =   4080
          Width           =   1335
@@ -672,7 +990,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   2
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   9
          Top             =   3600
          Width           =   1335
@@ -702,7 +1020,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   1
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   7
          Top             =   3120
          Width           =   1335
@@ -732,7 +1050,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtExternals 
          Height          =   375
          Index           =   0
-         Left            =   4920
+         Left            =   4200
          TabIndex        =   5
          Top             =   2640
          Width           =   1335
@@ -762,7 +1080,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   9
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   22
          Top             =   6960
          Width           =   1335
@@ -792,7 +1110,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   8
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   20
          Top             =   6480
          Width           =   1335
@@ -822,7 +1140,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   7
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   18
          Top             =   6000
          Width           =   1335
@@ -852,7 +1170,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   6
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   16
          Top             =   5520
          Width           =   1335
@@ -882,7 +1200,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   5
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   14
          Top             =   5040
          Width           =   1335
@@ -912,7 +1230,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   4
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   12
          Top             =   4560
          Width           =   1335
@@ -942,7 +1260,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   3
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   10
          Top             =   4080
          Width           =   1335
@@ -972,7 +1290,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   2
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   8
          Top             =   3600
          Width           =   1335
@@ -1002,7 +1320,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   1
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   6
          Top             =   3120
          Width           =   1335
@@ -1032,7 +1350,7 @@ Begin VB.Form frmEnterMarks
       Begin vkUserContolsXP.vkTextBox txtInternals 
          Height          =   375
          Index           =   0
-         Left            =   2880
+         Left            =   2280
          TabIndex        =   4
          Top             =   2640
          Width           =   1335
@@ -1059,17 +1377,17 @@ Begin VB.Form frmEnterMarks
          BorderColor     =   33023
          LegendForeColor =   16750899
       End
-      Begin vkUserContolsXP.vkLabel vkLabel6 
+      Begin vkUserContolsXP.vkLabel lblInternals 
          Height          =   255
-         Left            =   2760
+         Left            =   2520
          TabIndex        =   30
          Top             =   2280
-         Width           =   1215
-         _ExtentX        =   2143
+         Width           =   735
+         _ExtentX        =   1296
          _ExtentY        =   450
          BackColor       =   16777215
          BackStyle       =   0
-         Caption         =   "Internals:"
+         Caption         =   "Internals"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -1080,17 +1398,17 @@ Begin VB.Form frmEnterMarks
             Strikethrough   =   0   'False
          EndProperty
       End
-      Begin vkUserContolsXP.vkLabel vkLabel5 
-         Height          =   375
-         Left            =   360
+      Begin vkUserContolsXP.vkLabel lblSubjCode 
+         Height          =   255
+         Left            =   480
          TabIndex        =   29
          Top             =   2280
-         Width           =   1215
-         _ExtentX        =   2143
-         _ExtentY        =   661
+         Width           =   1095
+         _ExtentX        =   1931
+         _ExtentY        =   450
          BackColor       =   16777215
          BackStyle       =   0
-         Caption         =   "Subject Code:"
+         Caption         =   "Subject Code"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -1101,7 +1419,7 @@ Begin VB.Form frmEnterMarks
             Strikethrough   =   0   'False
          EndProperty
       End
-      Begin vkUserContolsXP.vkLabel vkLabel3 
+      Begin vkUserContolsXP.vkLabel lblRegNo 
          Height          =   375
          Left            =   360
          TabIndex        =   28
@@ -1124,11 +1442,11 @@ Begin VB.Form frmEnterMarks
       End
       Begin vkUserContolsXP.vkTextBox txtName 
          Height          =   375
-         Left            =   4440
+         Left            =   4200
          TabIndex        =   27
          Top             =   1560
-         Width           =   2175
-         _ExtentX        =   3836
+         Width           =   2400
+         _ExtentX        =   4233
          _ExtentY        =   661
          BeginProperty LegendFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
@@ -1151,7 +1469,7 @@ Begin VB.Form frmEnterMarks
          BorderColor     =   33023
          LegendForeColor =   16750899
       End
-      Begin vkUserContolsXP.vkLabel vkLabel4 
+      Begin vkUserContolsXP.vkLabel lblName 
          Height          =   255
          Left            =   3600
          TabIndex        =   26
@@ -1199,14 +1517,14 @@ Begin VB.Form frmEnterMarks
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   4440
+         Left            =   3480
          TabIndex        =   2
          Top             =   1080
-         Width           =   2175
+         Width           =   1215
       End
-      Begin vkUserContolsXP.vkLabel vkLabel2 
+      Begin vkUserContolsXP.vkLabel lblSem 
          Height          =   255
-         Left            =   3600
+         Left            =   2640
          TabIndex        =   25
          Top             =   1200
          Width           =   855
@@ -1241,7 +1559,7 @@ Begin VB.Form frmEnterMarks
          Top             =   600
          Width           =   5295
       End
-      Begin vkUserContolsXP.vkLabel vkLabel1 
+      Begin vkUserContolsXP.vkLabel lblDept 
          Height          =   255
          Left            =   360
          TabIndex        =   0
@@ -1272,17 +1590,39 @@ Attribute VB_Exposed = False
 Option Explicit
 Dim iSubjCount As Integer
 
+Private Sub cmbBatch_Change()
+    Call cmbBatch_Click
+End Sub
+
 Private Sub cmbBatch_Click()
-    iBatch = cmbBatch.Text
+    On Error Resume Next
+    iBatch = CInt(cmbBatch.Text)
     Call cmbRegNo_Load(cmbRegNo)
     Call cmbRegNo_Click
-    Call SubjCode_Load
+    HideControls
     iSubjCount = GetSubjCount(iSem, iDept, iBatch) - 1
     If cmbBatch.Text > 2007 Then
         lblExternals.Caption = "Grade"
     Else
         lblExternals.Caption = "Externals"
     End If
+    Call SubjCode_Load
+    DisplayControls
+End Sub
+Private Sub cmbSec_Change()
+    strSec = cmbSec.Text
+    Call cmbRegNo_Load(cmbRegNo)
+    Call cmbRegNo_Click
+End Sub
+
+Private Sub cmbSec_Click()
+    strSec = cmbSec.Text
+    Call cmbRegNo_Load(cmbRegNo)
+    Call cmbRegNo_Click
+End Sub
+
+Private Sub cmbSem_Change()
+    Call cmbBatch_Click
 End Sub
 
 Private Sub CmdClose_Click()
@@ -1304,12 +1644,12 @@ Private Sub cmdInsert_Click()
     rs.CursorLocation = adUseClient
     If iBatch > 2007 Then
         For i = 0 To iSubjCount
-            qr = "insert into studmarks(REGNO,SEMNO,DEPT,BATCH,SUBJCODE,INTERNALS,GRADE) values('" & cmbRegNo.Text & "','" & cmbSem.Text & "'," & iDept & "," & Mid(cmbRegNo.Text, 4, 2) & ",'" & txtSubjcode(i).Text & "','" & txtInternals(i).Text & "','" & txtExternals(i).Text & "')"
+            qr = "insert into studmarks(REGNO,SEMNO,DEPT,BATCH,SUBJCODE,INTERNALS,GRADE,VALUE,RESULT) values('" & cmbRegNo.Text & "','" & cmbSem.Text & "'," & iDept & "," & Mid(cmbRegNo.Text, 4, 2) & ",'" & txtSubjCode(i).Text & "','" & txtInternals(i).Text & "','" & txtExternals(i).Text & "'," & getGradeValue(txtExternals(i).Text) & ",'" & lblResult(i).Caption & "')"
             rs.Open qr, conn, adOpenDynamic, adLockOptimistic, 1
         Next i
     Else
         For i = 0 To iSubjCount
-            qr = "insert into studmarks(REGNO,SEMNO,DEPT,BATCH,SUBJCODE,INTERNALS,EXTERNALS) values('" & cmbRegNo.Text & "','" & cmbSem.Text & "'," & iDept & "," & Mid(cmbRegNo.Text, 4, 2) & ",'" & txtSubjcode(i).Text & "','" & txtInternals(i).Text & "','" & txtExternals(i).Text & "')"
+            qr = "insert into studmarks(REGNO,SEMNO,DEPT,BATCH,SUBJCODE,INTERNALS,EXTERNALS,RESULT) values('" & cmbRegNo.Text & "','" & cmbSem.Text & "'," & iDept & "," & Mid(cmbRegNo.Text, 4, 2) & ",'" & txtSubjCode(i).Text & "','" & txtInternals(i).Text & "','" & txtExternals(i).Text & "','" & lblResult(i).Caption & "')"
             rs.Open qr, conn, adOpenDynamic, adLockOptimistic, 1
         Next i
     End If
@@ -1321,94 +1661,65 @@ Private Sub cmdInsert_Click()
     For j = 0 To iSubjCount
         txtInternals(j).Text = ""
         txtExternals(j).Text = ""
+        lblResult(i).Caption = ""
     Next
 End Sub
-
-
-
 
 
 Private Sub fEnterMarks_MouseDown(Button As MouseButtonConstants, Shift As Integer, Control As Integer, x As Long, y As Long)
     ReleaseCapture
-    SendMessage hWnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
+    SendMessage hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
 End Sub
-
 Private Sub Form_Load()
-    'Me.Top = mdiMain.Top + 300
-    'Me.Left = mdiMain.Left + 1000
     CreateRoundRectFromWindow Me, 7, 7
-    Me.Top = (mdiMain.Height - Me.Height) / 5
+    Me.Top = 250
     Me.Left = (mdiMain.Width - Me.Width) / 2
     Me.BackColor = mdiMain.BackColor
     Call frmColor(frmEnterMarks)
-    
-    Dim i As Integer
-    For i = 0 To 9
-        txtSubjcode(i).Visible = False
-        txtInternals(i).Visible = False
-        txtExternals(i).Visible = False
-    Next
-    
+    HideControls
     Call cmbDept_Load(cmbDept)
     Call cmbSem_Load(cmbSem)
-    iSem = cmbSem.Text
     Call cmbBatch_Load(cmbBatch)
-    
+    Call cmbSec_Load(cmbSec)
+    iSem = cmbSem.Text
+    iBatch = cmbBatch.Text
     iSubjCount = GetSubjCount(iSem, iDept, iBatch) - 1
-    For i = 0 To iSubjCount
-        txtSubjcode(i).Visible = True
-        txtInternals(i).Visible = True
-        txtExternals(i).Visible = True
-    Next
-    
+    Call SubjCode_Load
+    DisplayControls
     Call cmbRegNo_Load(cmbRegNo)
     Call cmbRegNo_Click
-    Call SubjCode_Load
 End Sub
 Private Sub cmbDept_Click()
     Dim i As Integer
     For i = 0 To iSubjCount
-        txtSubjcode(i).Text = ""
+        txtSubjCode(i).Text = ""
     Next
     iDept = Department(cmbDept)
+    iSubjCount = GetSubjCount(iSem, iDept, iBatch) - 1
     Call cmbRegNo_Load(cmbRegNo)
     Call cmbRegNo_Click
     Call SubjCode_Load
-    iSubjCount = GetSubjCount(iSem, iDept, iBatch) - 1
 End Sub
 Private Sub cmbDept_KeyPress(KeyAscii As Integer)
     If KeyAscii = 13 Then Call cmbDept_Click
 End Sub
 Private Sub cmbSem_Click()
-    Dim i As Integer
     iSem = cmbSem.Text
     iSubjCount = GetSubjCount(iSem, iDept, iBatch) - 1
-    For i = 0 To 9
-        txtSubjcode(i).Visible = False
-        txtInternals(i).Visible = False
-        txtExternals(i).Visible = False
-    Next
-    For i = 0 To iSubjCount
-        txtSubjcode(i).Visible = True
-        txtInternals(i).Visible = True
-        txtExternals(i).Visible = True
-    Next
+    Call HideControls
     Call SubjCode_Load
+    Call LoadMarks
+    Call DisplayControls
 End Sub
 Private Sub cmbSem_KeyPress(KeyAscii As Integer)
     If KeyAscii = 13 Then Call cmbSem_Click
 End Sub
 Private Sub cmbRegNo_Click()
     On Error Resume Next
-    Dim rs As New ADODB.Recordset
-    Dim reg As String
-    Dim sql As String
-    reg = cmbRegNo.Text
-    rs.CursorLocation = adUseClient
-    sql = "select studname from studdetails where regno = '" & reg & "'"
-    rs.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
-    txtName.Text = rs.Fields("studname")
-    txtName.Refresh
+    txtName.Text = GetStudName(cmbRegNo.Text)
+    HideControls
+    LoadMarks
+    DisplayControls
     Exit Sub
 End Sub
 Private Sub cmbRegNo_KeyPress(KeyAscii As Integer)
@@ -1423,8 +1734,60 @@ Private Sub SubjCode_Load()
     sql = "select subjcode from subj where dept = '" & iDept & "' and semno = " & iSem & " and batch = " & Mid(iBatch, 3, 2) & " order by subjcode"
     rs.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
     For i = 0 To iSubjCount
-        txtSubjcode(i).Text = rs.Fields("subjcode")
+        txtSubjCode(i).Text = rs.Fields("subjcode")
         rs.MoveNext
     Next i
 End Sub
-
+Private Sub DisplayControls()
+    Dim i As Integer
+    For i = 0 To iSubjCount
+        txtSubjCode(i).Visible = True
+        txtInternals(i).Visible = True
+        txtExternals(i).Visible = True
+        lblResult(i).Visible = True
+    Next
+End Sub
+Private Sub HideControls()
+    Dim i As Integer
+    For i = 0 To 9
+        txtSubjCode(i).Visible = False
+        txtInternals(i).Visible = False
+        txtExternals(i).Visible = False
+        lblResult(i).Visible = False
+        txtInternals(i).Text = ""
+        txtExternals(i).Text = ""
+    Next
+End Sub
+Private Sub LoadMarks()
+    On Error Resume Next
+    Dim rs As New ADODB.Recordset
+    Dim sql As String
+    Dim icount As Integer
+    icount = 0
+    Dim i As Integer
+    If iBatch > 2007 Then
+        For i = 0 To iSubjCount
+            sql = "select internals,grade from studmarks where regno='" & cmbRegNo.Text & "' and dept = '" & iDept & "' and semno = " & iSem & " and batch = " & Mid(iBatch, 3, 2) & " and subjcode='" & txtSubjCode(i).Text & "'"
+            rs.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
+            txtInternals(i).Text = rs.Fields(0)
+            txtInternals(i).Alignment = vbCenter
+            txtExternals(i).Text = rs.Fields(1)
+            txtExternals(i).Alignment = vbCenter
+            If rs.Fields(1) = "U" Then lblResult(i).Caption = "RA" Else lblResult(i).Caption = "P"
+            icount = icount + 1
+            rs.Close
+        Next
+    Else
+        For i = 0 To iSubjCount
+            sql = "select internals,externals from studmarks where regno='" & cmbRegNo.Text & "' and dept = '" & iDept & "' and semno = " & iSem & " and batch = " & Mid(iBatch, 3, 2) & " and subjcode='" & txtSubjCode(i).Text & "'"
+            rs.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
+            txtInternals(i).Text = rs.Fields(0)
+            txtInternals(i).Alignment = vbCenter
+            txtExternals(i).Text = rs.Fields(1)
+            txtExternals(i).Alignment = vbCenter
+            If (CInt(rs.Fields(0)) + CInt(rs.Fields(1))) >= 50 Then lblResult(i).Caption = "P" Else lblResult(i).Caption = "RA"
+            icount = icount + 1
+            rs.Close
+        Next
+    End If
+End Sub

@@ -1,14 +1,16 @@
 VERSION 5.00
-Object = "{5A775647-818E-4061-92FE-2C097A4D7E15}#1.0#0"; "vkusercontrolsxp.ocx"
+Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmDBPass 
+   BorderStyle     =   0  'None
    Caption         =   "Database PassWord"
    ClientHeight    =   3270
-   ClientLeft      =   120
-   ClientTop       =   420
+   ClientLeft      =   0
+   ClientTop       =   -30
    ClientWidth     =   4665
    MaxButton       =   0   'False
    ScaleHeight     =   3270
    ScaleWidth      =   4665
+   ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin vkUserContolsXP.vkLabel lblRestart 
       Height          =   375
@@ -40,7 +42,7 @@ Begin VB.Form frmDBPass
       _ExtentY        =   926
       Interval        =   1000
    End
-   Begin vkUserContolsXP.vkFrame vkFrame1 
+   Begin vkUserContolsXP.vkFrame fDBPass 
       Height          =   3285
       Left            =   0
       TabIndex        =   3
@@ -48,19 +50,20 @@ Begin VB.Form frmDBPass
       Width           =   4680
       _ExtentX        =   8255
       _ExtentY        =   5794
-      Caption         =   ""
+      Caption         =   "Change DataBase Password"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   12
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      TitleColor1     =   12640511
-      TitleColor2     =   33023
+      TitleColor1     =   33023
+      TitleColor2     =   12640511
       TitleGradient   =   2
+      TitleHeight     =   360
       BorderColor     =   33023
       BorderWidth     =   2
       Begin vkUserContolsXP.vkLabel lblMessage 

@@ -22,8 +22,8 @@ Public Const WM_NCLBUTTONDOWN = &HA1
 Public Const WM_SYSCOMMAND = &H112
 
 Public Type PointAPI
-    X As Long
-    Y As Long
+    x As Long
+    y As Long
 End Type
 
 Public conn As ADODB.Connection 'Oracle Connection String

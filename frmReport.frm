@@ -6,15 +6,23 @@ Begin VB.Form frmReport
    BackColor       =   &H00808080&
    BorderStyle     =   0  'None
    Caption         =   "Report"
-   ClientHeight    =   8475
+   ClientHeight    =   8490
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   14865
+   ClientWidth     =   14895
    Icon            =   "frmReport.frx":0000
    MDIChild        =   -1  'True
-   ScaleHeight     =   8475
-   ScaleWidth      =   14865
+   ScaleHeight     =   8490
+   ScaleWidth      =   14895
    ShowInTaskbar   =   0   'False
+   Begin VB.CommandButton Command1 
+      Caption         =   "Command1"
+      Height          =   495
+      Left            =   10440
+      TabIndex        =   54
+      Top             =   720
+      Width           =   1215
+   End
    Begin JURA.ThemedComboBox ThemedComboBox1 
       Left            =   12000
       Top             =   600
@@ -89,7 +97,7 @@ Begin VB.Form frmReport
       Caption         =   "Semester Report"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   12
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -97,7 +105,7 @@ Begin VB.Form frmReport
          Strikethrough   =   0   'False
       EndProperty
       TitleGradient   =   2
-      TitleHeight     =   350
+      TitleHeight     =   360
       Begin vkUserContolsXP.vkLabel lblSec 
          Height          =   270
          Left            =   7200
@@ -1168,7 +1176,12 @@ Attribute VB_Exposed = False
 Dim State As Integer
 Dim ReportTop As Integer
 
+Private Sub cmbSec_Change()
+    strSec = cmbSec.Text
+End Sub
+
 Private Sub cmbSec_Click()
+    strSec = cmbSec.Text
     Call cmbBatch_Click
 End Sub
 
@@ -1178,7 +1191,6 @@ Private Sub cmdBest_Click()
     Else
         Call rptBest
     End If
-    'Call rptOverall
 End Sub
 
 Private Sub rptOverall()
@@ -1281,7 +1293,7 @@ Private Sub rptGradeBest()
     Dim rsBest As New ADODB.Recordset
     Dim sqlBest As String
     rsBest.CursorLocation = adUseClient
-    sqlBest = "select regno,gpa,rank from (SELECT s1.regno,round(sum(s1.value*s2.credit)/(select sum(credit) FROM subj WHERE batch=" & Mid(iBatch, 3, 2) & " AND semno=" & iSem & " AND dept=" & Department(cmbDept) & "),2) AS GPA,Dense_rank() over (order by (round(sum(s1.value*s2.credit)/(select sum(credit) FROM subj WHERE batch=" & Mid(iBatch, 3, 2) & " AND semno=" & iSem & " AND dept=" & Department(cmbDept) & "),2)) desc) as RANK FROM studmarks s1,subj s2 WHERE s1.batch=" & Mid(iBatch, 3, 2) & " AND s1.semno=" & iSem & " AND s1.subjcode=s2.subjcode and s1.semno=s2.semno and s1.dept=s2.dept and s1.batch=s2.batch GROUP BY s1.regno) where RANK<=5"
+    sqlBest = "select regno,gpa,rank from (SELECT s1.regno,round(sum(s1.value*s2.credit)/(select sum(credit) FROM subj WHERE batch=" & Mid(iBatch, 3, 2) & " AND semno=" & iSem & " AND dept=" & Department(cmbDept) & "),2) AS GPA,Dense_rank() over (order by (nvl(round(sum(s1.value*s2.credit)/(select sum(credit) FROM subj WHERE batch=" & Mid(iBatch, 3, 2) & " AND semno=" & iSem & " AND dept=" & Department(cmbDept) & "),2),0)) desc) as RANK FROM studmarks s1,subj s2 WHERE s1.batch=" & Mid(iBatch, 3, 2) & " AND s1.semno=" & iSem & " AND s1.subjcode=s2.subjcode and s1.semno=s2.semno and s1.dept=s2.dept and s1.batch=s2.batch GROUP BY s1.regno) where RANK<=5"
     rsBest.Open sqlBest, conn, adOpenDynamic, adLockOptimistic
     
     Dim rsLast As New ADODB.Recordset
@@ -1396,17 +1408,17 @@ Private Sub rptGradeBest()
     PDF.PDFEndDoc
 End Sub
 Private Sub rptBest()
-    On Error Resume Next
+  '  On Error Resume Next
     Dim rsBest As New ADODB.Recordset
     Dim sqlBest As String
     rsBest.CursorLocation = adUseClient
-    sqlBest = "select regno,sum from (select regno,round(avg(internals+externals),2) as sum,Dense_rank() over (order by nvl(round(avg(internals+externals),2),0) desc) b from studmarks where semno=" & iSem & " and dept=" & Department(cmbDept) & " and batch=" & Mid(iBatch, 3, 2) & " group by regno ) where b<=5"
+    sqlBest = "select regno,sum from (select s1.regno,round(avg(s1.internals+s1.externals),2) as sum,Dense_rank() over (order by nvl(round(avg(s1.internals+s1.externals),2),0) desc) b from studmarks s1,studdetails s2 where s1.regno=s2.regno and s1.semno=" & iSem & " and s1.dept=" & Department(cmbDept) & " and s1.batch=" & Mid(iBatch, 3, 2) & " and s2.sec='" & strSec & "'  group by s1.regno) where b<=5"
     rsBest.Open sqlBest, conn, adOpenDynamic, adLockOptimistic
     
     Dim rsLast As New ADODB.Recordset
     Dim sqlLast As String
     rsLast.CursorLocation = adUseClient
-    sqlLast = "select regno,sum from (select regno,round(avg(internals+externals),2) as sum,Dense_rank() over (order by round(avg(internals+externals),2) asc) b from studmarks where semno=" & iSem & " and dept=" & Department(cmbDept) & " and batch=" & Mid(iBatch, 3, 2) & " group by regno ) where b<=5"
+    sqlLast = "select regno,sum from (select s1.regno,round(avg(s1.internals+s1.externals),2) as sum,Dense_rank() over (order by nvl(round(avg(s1.internals+s1.externals),2),0) asc) b from studmarks s1,studdetails s2 where s1.regno=s2.regno and s1.semno=" & iSem & " and s1.dept=" & Department(cmbDept) & " and s1.batch=" & Mid(iBatch, 3, 2) & " and s2.sec='" & strSec & "'  group by s1.regno) where b<=5"
     rsLast.Open sqlLast, conn, adOpenDynamic, adLockOptimistic
     
     Dim PDF As New clsPDF
@@ -1511,6 +1523,10 @@ Private Sub rptBest()
         PDF.PDFSetFont 2, 10, FONT_NORMAL
         PDF.PDFTextOut "Report Generated By JURA", 7.5, 27.75
     PDF.PDFEndDoc
+End Sub
+
+Private Sub Command1_Click()
+    Call rptOverall
 End Sub
 
 Private Sub Form_Load()
@@ -1944,7 +1960,7 @@ Private Sub frameStudName_MouseMove(Button As MouseButtonConstants, Shift As Int
 End Sub
 Private Sub fReport_MouseDown(Button As MouseButtonConstants, Shift As Integer, Control As Integer, x As Long, y As Long)
     ReleaseCapture
-    SendMessage hWnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
+    SendMessage hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
 End Sub
 
 
@@ -1957,7 +1973,7 @@ Private Sub MSHFlexGrid2_DblClick()
     Dim xPos As Long
     Dim yPos As Long
     GetCursorPos Cursor
-    ScreenToClient Me.hWnd, Cursor
+    ScreenToClient Me.hwnd, Cursor
     xPos = Me.ScaleX(Cursor.x, vbPixels, vbTwips)
     yPos = Me.ScaleY(Cursor.y, vbPixels, vbTwips)
     With MSHFlexGrid2

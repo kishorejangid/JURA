@@ -4,25 +4,25 @@ Object = "{0ECD9B60-23AA-11D0-B351-00A0C9055D8E}#6.0#0"; "mshflxgd.ocx"
 Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmSubjectAnalysis 
    BorderStyle     =   0  'None
-   ClientHeight    =   8880
+   ClientHeight    =   8670
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   10560
+   ClientWidth     =   10575
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   8880
-   ScaleWidth      =   10560
+   ScaleHeight     =   8670
+   ScaleWidth      =   10575
    ShowInTaskbar   =   0   'False
    Begin vkUserContolsXP.vkFrame fMSChart 
-      Height          =   3615
+      Height          =   3255
       Left            =   240
       TabIndex        =   12
       TabStop         =   0   'False
       Top             =   4680
       Width           =   10095
       _ExtentX        =   17806
-      _ExtentY        =   6376
+      _ExtentY        =   5741
       BackStyle       =   0
       Caption         =   ""
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -39,7 +39,7 @@ Begin VB.Form frmSubjectAnalysis
       BorderWidth     =   3
    End
    Begin MSChart20Lib.MSChart MSChart 
-      Height          =   3615
+      Height          =   3255
       Left            =   240
       OleObjectBlob   =   "frmSubjectAnalysis.frx":0000
       TabIndex        =   11
@@ -47,7 +47,7 @@ Begin VB.Form frmSubjectAnalysis
       Top             =   4680
       Width           =   10095
    End
-   Begin vkUserContolsXP.vkFrame vkFrame1 
+   Begin vkUserContolsXP.vkFrame fGrid 
       Height          =   3375
       Left            =   240
       TabIndex        =   10
@@ -94,17 +94,17 @@ Begin VB.Form frmSubjectAnalysis
       RoundedValue    =   1
    End
    Begin vkUserContolsXP.vkFrame fSubjectAnalysis 
-      Height          =   8895
+      Height          =   8655
       Left            =   0
       TabIndex        =   0
       Top             =   0
       Width           =   10575
       _ExtentX        =   18653
-      _ExtentY        =   15690
+      _ExtentY        =   15266
       Caption         =   "Subject Wise Analysis"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Size            =   12
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -112,8 +112,36 @@ Begin VB.Form frmSubjectAnalysis
          Strikethrough   =   0   'False
       EndProperty
       TitleGradient   =   2
-      TitleHeight     =   350
+      TitleHeight     =   360
       BorderWidth     =   2
+      Begin vkUserContolsXP.vkLabel lblSec 
+         Height          =   255
+         Left            =   6480
+         TabIndex        =   14
+         Top             =   480
+         Width           =   1335
+         _ExtentX        =   2355
+         _ExtentY        =   450
+         BackColor       =   16777215
+         BackStyle       =   0
+         Caption         =   "Section:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin VB.ComboBox cmbSec 
+         Height          =   315
+         Left            =   6480
+         TabIndex        =   13
+         Top             =   720
+         Width           =   1335
+      End
       Begin MSHierarchicalFlexGridLib.MSHFlexGrid MSHFlexGrid1 
          Height          =   3375
          Left            =   240
@@ -134,7 +162,7 @@ Begin VB.Form frmSubjectAnalysis
          Height          =   375
          Left            =   240
          TabIndex        =   8
-         Top             =   8400
+         Top             =   8040
          Width           =   10095
          _ExtentX        =   17806
          _ExtentY        =   661
@@ -205,7 +233,7 @@ Begin VB.Form frmSubjectAnalysis
             Strikethrough   =   0   'False
          EndProperty
       End
-      Begin vkUserContolsXP.vkLabel vkLabel1 
+      Begin vkUserContolsXP.vkLabel lblBatch 
          Height          =   255
          Left            =   3600
          TabIndex        =   3
@@ -262,7 +290,7 @@ Private Sub MSHFlexLoad()
     MSHFlexGrid1.TextMatrix(0, 6) = "Maximum"
     MSHFlexGrid1.TextMatrix(0, 7) = "Minimum"
     MSHFlexGrid1.TextMatrix(0, 8) = "Average"
-    vkFrame1.Width = MSHFlexGrid1.Width - 20
+    fGrid.Width = MSHFlexGrid1.Width - 20
 End Sub
 
 Private Sub btnClose_Click()
@@ -279,6 +307,14 @@ Private Sub cmbDept_Click()
     Call SubjLoad
 End Sub
 
+Private Sub cmbSec_Change()
+    strSec = cmbSec.Text
+End Sub
+
+Private Sub cmbSec_Click()
+    strSec = cmbSec.Text
+End Sub
+
 Private Sub cmbSem_Click()
     iSem = cmbSem.Text
     Call SubjLoad
@@ -293,6 +329,7 @@ Private Sub cmdPrint_Click()
 End Sub
 Private Sub rptPrint()
     On Error Resume Next
+    SavePicture CaptureGraph(Me), App.Path & "/Images/graph.jpg"
     Dim PDF As New clsPDF
     Dim i, j As Integer
     PDF.PDFTitle = "Subject Report"
@@ -377,6 +414,8 @@ Private Sub rptPrint()
         PDF.PDFSetLineWidth = 0.03
         PDF.PDFDrawLine 3.25, 6.3, 3.25, 6.7 + i * 0.6
         
+        PDF.PDFImage App.Path & "/Images/graph.jpg", 2, 5, 5, 5
+        
         PDF.PDFSetLineWidth = 0.03
         PDF.PDFDrawLine 10.2, 6.3, 10.2, 6.7 + i * 0.6
         
@@ -417,6 +456,7 @@ Private Sub rptPrint()
 End Sub
 Private Sub rptGradePrint()
     On Error Resume Next
+    'SavePicture CaptureGraph(Me), App.Path & "/Images/graph.jpg"
     Dim PDF As New clsPDF
     Dim i, j As Integer
     PDF.PDFTitle = "Subject Report"
@@ -442,6 +482,8 @@ Private Sub rptGradePrint()
         PDF.PDFTextOut "RESULT ANALYSIS OF EVEN SEMESTER (2010-2011) - AU TIRUNELVELI", 1.15, 3.65
         PDF.PDFTextOut "DEPARTMENT OF " & UCase(cmbDept.Text), 3.8, 4.5
         PDF.PDFTextOut "SUBJECT WISE ANALYSIS", 6.25, 5.15
+        
+        PDF.PDFImage App.Path & "/Images/graph.jpg", 3, 15, 15, 6
         
         PDF.PDFSetLineWidth = 0.03
         PDF.PDFDrawLine 1, 5.35, 20, 5.35
@@ -553,6 +595,7 @@ Private Sub Form_Load()
     Call frmColor(frmSubjectAnalysis)
     Call cmbDept_Load(cmbDept)
     Call cmbSem_Load(cmbSem)
+    Call cmbSec_Load(cmbSec)
     Call cmbBatch_Load(cmbBatch)
     Call MSHFlexLoad
     Call SubjLoad
@@ -598,7 +641,7 @@ End Sub
 
 Private Sub fSubjectAnalysis_MouseDown(Button As MouseButtonConstants, Shift As Integer, Control As Integer, x As Long, y As Long)
     ReleaseCapture
-    SendMessage hWnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
+    SendMessage hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
 End Sub
 
 Private Sub MSChart_Load()
@@ -610,6 +653,5 @@ Private Sub MSChart_Load()
         MSChart.RowLabel = MSHFlexGrid1.TextMatrix(i, 0)
         MSChart.Data = MSHFlexGrid1.TextMatrix(i, 4)
     Next
-    MSChart.EditCopy
-    
 End Sub
+

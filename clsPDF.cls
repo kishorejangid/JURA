@@ -20,14 +20,14 @@ Private Const clsPDFVersion = "clsPDF 1.0"
 Private wsPathConfig As String
 Private wsPathAdobe  As String
 
-Private Declare Function GetDeviceCaps Lib "GDI32" (ByVal hDC As Long, ByVal nIndex As Long) As Long
-Private Declare Function GetDC Lib "User32" (ByVal hWnd As Long) As Long
-Private Declare Function ReleaseDC Lib "User32" (ByVal hWnd As Long, ByVal hDC As Long) As Long
+Private Declare Function GetDeviceCaps Lib "gdi32" (ByVal hdc As Long, ByVal nIndex As Long) As Long
+Private Declare Function GetDC Lib "user32" (ByVal hwnd As Long) As Long
+Private Declare Function ReleaseDC Lib "user32" (ByVal hwnd As Long, ByVal hdc As Long) As Long
 
-Private Declare Function PostMessage Lib "User32" _
-    Alias "PostMessageA" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+Private Declare Function PostMessage Lib "user32" _
+    Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
 
-Private Declare Function FindWindow Lib "User32" _
+Private Declare Function FindWindow Lib "user32" _
     Alias "FindWindowA" (ByVal szClass$, ByVal szTitle$) As Long
     Private Const WM_CLOSE = &H10
 
@@ -312,10 +312,10 @@ Property Let PDFWatermark(sWatermark As String)
     sPDFWatermark = sWatermark
 
 End Property
-Private Sub PDFRotationText(X As Double, Y As Double, sText As String, pAngle As Integer)
+Private Sub PDFRotationText(x As Double, y As Double, sText As String, pAngle As Integer)
 
     PDFSetRotation = pAngle
-        PDFTextOut sText, X, Y
+        PDFTextOut sText, x, y
     PDFSetRotation = 0
 
 End Sub
@@ -560,7 +560,7 @@ Attribute PDFFileName.VB_HelpID = 2028
 Dim Items()     As String
 Dim sFilePath   As String
 Dim sFileName   As String
-Dim hWnd        As Long
+Dim hwnd        As Long
 Dim retval      As Long
 Dim in_i        As Long
 
@@ -581,8 +581,8 @@ Dim in_i        As Long
     
 Err_File:
     If Err = 70 Then
-        hWnd = FindWindow(vbNullString, "Adobe Reader - [" & sFileName & "]")
-        retval = PostMessage(hWnd, WM_CLOSE, 0&, 0&)
+        hwnd = FindWindow(vbNullString, "Adobe Reader - [" & sFileName & "]")
+        retval = PostMessage(hwnd, WM_CLOSE, 0&, 0&)
         Sleep 17
         Set Strm = Fso.CreateTextFile(sPDFName, True)
         Resume Next
@@ -869,7 +869,7 @@ Dim str_TmpFontNm   As String
     FontNum = FontNum + 1
 
 End Sub
-Public Sub PDFDrawEllipse(X As Double, Y As Double, rx As Double, Optional ry As Double = 0, Optional URLLink As String = "")
+Public Sub PDFDrawEllipse(x As Double, y As Double, rx As Double, Optional ry As Double = 0, Optional URLLink As String = "")
 Attribute PDFDrawEllipse.VB_HelpID = 2056
 
 Dim sTempDrawMode As String
@@ -890,52 +890,52 @@ Dim sTempDrawMode As String
     End Select
 
     PDFOutStream sTempStream, PDFLnStyle
-        PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + ry / 2) * in_Ech) & " m"
-            PDFOutStream sTempStream, PDFCurve(X * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry / 2 - ry / 2 * 11 / 20) * in_Ech, _
-                (X + rx / 2 - rx / 2 * 11 / 20) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - Y * in_Ech, _
-                (X + rx / 2) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - Y * in_Ech)
-            PDFOutStream sTempStream, PDFCurve((X + rx / 2 + rx / 2 * 11 / 20) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - Y * in_Ech, _
-                (X + rx) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry / 2 - ry / 2 * 11 / 20) * in_Ech, _
-                (X + rx) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry / 2) * in_Ech)
-            PDFOutStream sTempStream, PDFCurve((X + rx) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry / 2 + ry / 2 * 11 / 20) * in_Ech, _
-                (X + rx / 2 + rx / 2 * 11 / 20) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry) * in_Ech, _
-                (X + rx / 2) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry) * in_Ech)
-            PDFOutStream sTempStream, PDFCurve((X + rx / 2 - rx / 2 * 11 / 20) * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry) * in_Ech, _
-                X * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry / 2 + ry / 2 * 11 / 20) * in_Ech, _
-                X * in_Ech, _
-                PDFCanvasHeight(in_Canvas) - (Y + ry / 2) * in_Ech)
+        PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + ry / 2) * in_Ech) & " m"
+            PDFOutStream sTempStream, PDFCurve(x * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry / 2 - ry / 2 * 11 / 20) * in_Ech, _
+                (x + rx / 2 - rx / 2 * 11 / 20) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - y * in_Ech, _
+                (x + rx / 2) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - y * in_Ech)
+            PDFOutStream sTempStream, PDFCurve((x + rx / 2 + rx / 2 * 11 / 20) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - y * in_Ech, _
+                (x + rx) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry / 2 - ry / 2 * 11 / 20) * in_Ech, _
+                (x + rx) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry / 2) * in_Ech)
+            PDFOutStream sTempStream, PDFCurve((x + rx) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry / 2 + ry / 2 * 11 / 20) * in_Ech, _
+                (x + rx / 2 + rx / 2 * 11 / 20) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry) * in_Ech, _
+                (x + rx / 2) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry) * in_Ech)
+            PDFOutStream sTempStream, PDFCurve((x + rx / 2 - rx / 2 * 11 / 20) * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry) * in_Ech, _
+                x * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry / 2 + ry / 2 * 11 / 20) * in_Ech, _
+                x * in_Ech, _
+                PDFCanvasHeight(in_Canvas) - (y + ry / 2) * in_Ech)
     PDFOutStream sTempStream, PDFFormatDouble(PDFLnWidth * in_Ech) & " w " & sTempDrawMode
 
     PDFSetTextColor = vbWhite
     strTLink = "LINK"
     strTyLink = "ELLIPSE"
-    PDFSetLink URLLink, "ELLIPSE", Int((X - rx / 2)), Int((Y + ry / 2 - ry / 2 * 11 / 20))
+    PDFSetLink URLLink, "ELLIPSE", Int((x - rx / 2)), Int((y + ry / 2 - ry / 2 * 11 / 20))
     strTyLink = ""
     
-    in_xCurrent = X
-    in_yCurrent = Y + ry / 2
+    in_xCurrent = x
+    in_yCurrent = y + ry / 2
 
 End Sub
-Private Function PDFCurve(X1, Y1, X2, Y2, x3, y3 As Double) As String
+Private Function PDFCurve(X1, Y1, X2, Y2, X3, Y3 As Double) As String
 Attribute PDFCurve.VB_HelpID = 2057
 
   PDFCurve = PDFFormatDouble(X1) & " " & _
              PDFFormatDouble(Y1) & " " & _
              PDFFormatDouble(X2) & " " & _
              PDFFormatDouble(Y2) & " " & _
-             PDFFormatDouble(x3) & " " & _
-             PDFFormatDouble(y3) & " c"
+             PDFFormatDouble(X3) & " " & _
+             PDFFormatDouble(Y3) & " c"
 
 End Function
 Public Sub PDFDrawPolygon(ParamArray pParam() As Variant)
@@ -973,18 +973,18 @@ Dim in_i          As Integer
     PDFOutStream sTempStream, "%FIN_POLY/%"
     
 End Sub
-Private Function PDFPoint(X As Double, Y As Double)
+Private Function PDFPoint(x As Double, y As Double)
 
-    PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & _
-                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " m"
+    PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & _
+                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " m"
 
 End Function
-Private Function PDFLine(X As Double, Y As Double)
+Private Function PDFLine(x As Double, y As Double)
 
-    PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & _
-                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " l"
+    PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & _
+                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " l"
 End Function
-Public Sub PDFDrawLineHor(X As Double, Y As Double, w As Double)
+Public Sub PDFDrawLineHor(x As Double, y As Double, W As Double)
 Attribute PDFDrawLineHor.VB_HelpID = 2059
 
     If Right(PDFLineColor, 2) = "RG" Then
@@ -995,17 +995,17 @@ Attribute PDFDrawLineHor.VB_HelpID = 2059
 
     PDFOutStream sTempStream, "%DEBUT_LNH/%"
     PDFOutStream sTempStream, PDFLnStyle
-    PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " m"
-    PDFOutStream sTempStream, PDFFormatDouble((X + w) * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " l"
+    PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " m"
+    PDFOutStream sTempStream, PDFFormatDouble((x + W) * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " l"
     PDFOutStream sTempStream, PDFLineColor
     PDFOutStream sTempStream, PDFFormatDouble(PDFLnWidth * in_Ech) & " w S"
     PDFOutStream sTempStream, "%FIN_LNH/%"
     
-    in_xCurrent = X + w
-    in_yCurrent = Y
+    in_xCurrent = x + W
+    in_yCurrent = y
 
 End Sub
-Public Sub PDFDrawLineVer(X As Double, Y As Double, h As Double)
+Public Sub PDFDrawLineVer(x As Double, y As Double, h As Double)
 Attribute PDFDrawLineVer.VB_HelpID = 2060
 
     If Right(PDFLineColor, 2) = "RG" Then
@@ -1016,14 +1016,14 @@ Attribute PDFDrawLineVer.VB_HelpID = 2060
     
     PDFOutStream sTempStream, "%DEBUT_LNV/%"
     PDFOutStream sTempStream, PDFLnStyle
-    PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " m"
-    PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + h) * in_Ech) & " l"
+    PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " m"
+    PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + h) * in_Ech) & " l"
     PDFOutStream sTempStream, PDFLineColor
     PDFOutStream sTempStream, PDFFormatDouble(PDFLnWidth * in_Ech) & " w S"
     PDFOutStream sTempStream, "%FIN_LNV/%"
     
-    in_xCurrent = X
-    in_yCurrent = Y + h
+    in_xCurrent = x
+    in_yCurrent = y + h
 
 End Sub
 Public Sub PDFDrawLine(X1 As Double, Y1 As Double, X2 As Double, Y2 As Double)
@@ -1051,7 +1051,7 @@ Attribute PDFDrawLine.VB_HelpID = 2061
 
 
 End Sub
-Public Sub PDFDrawRectangle(X As Double, Y As Double, w As Double, h As Double, Optional URLLink As String = "")
+Public Sub PDFDrawRectangle(x As Double, y As Double, W As Double, h As Double, Optional URLLink As String = "")
 
 Dim sTempDrawMode As String
         
@@ -1070,9 +1070,9 @@ Dim sTempDrawMode As String
     End Select
     
     PDFOutStream sTempStream, PDFLnStyle
-    PDFOutStream sTempStream, PDFFormatDouble(X * in_Ech) & " " & _
-                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " " & _
-                              PDFFormatDouble(w * in_Ech) & " " & _
+    PDFOutStream sTempStream, PDFFormatDouble(x * in_Ech) & " " & _
+                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " " & _
+                              PDFFormatDouble(W * in_Ech) & " " & _
                               PDFFormatDouble(-1 * h * in_Ech) & " re " & sTempDrawMode
     PDFOutStream sTempStream, PDFFormatDouble(PDFLnWidth * in_Ech) & " w S"
 
@@ -1080,14 +1080,14 @@ Dim sTempDrawMode As String
     
     strTLink = "LINK"
     strTyLink = "RECTANGLE"
-    wRect = w
-    PDFSetLink URLLink, "RECTANGLE", Int(X + 5), Int(Y + h / 2)
+    wRect = W
+    PDFSetLink URLLink, "RECTANGLE", Int(x + 5), Int(y + h / 2)
     PDFOutStream sTempStream, "%FIN_RECT/%"
 
     strTyLink = ""
     
-    in_xCurrent = X
-    in_yCurrent = Y + h
+    in_xCurrent = x
+    in_yCurrent = y + h
     
 End Sub
 Private Function PDFHtml2RgbColor(sColor As String) As PDFRGB
@@ -1262,10 +1262,10 @@ Dim strTempAlign As String
     PDFGetAlignement = strTempAlign
 
 End Property
-Public Sub PDFLink(X As Double, Y As Double, str_Text As String, Optional str_Link As String = "")
+Public Sub PDFLink(x As Double, y As Double, str_Text As String, Optional str_Link As String = "")
 Attribute PDFLink.VB_HelpID = 2070
 
-Dim w As Integer
+Dim W As Integer
 Dim h As Integer
 
     pTempAngle = 0
@@ -1276,27 +1276,27 @@ Dim h As Integer
     
         If PDFboImage = True Then
             PDFSetTextColor = vbBlue
-            w = Int(ImgWidth)
+            W = Int(ImgWidth)
             h = Int(ImgHeight)
-            PDFTextOut "", X, Y
+            PDFTextOut "", x, y
         Else
             Select Case strTyLink
                 Case "ELLIPSE"
-                    w = Int(PDFGetStringWidth(strTLink, PDFFontName, PDFFontSize))
+                    W = Int(PDFGetStringWidth(strTLink, PDFFontName, PDFFontSize))
                     h = Int(PDFFontSize)
-                    PDFTextOut "", X, Y
+                    PDFTextOut "", x, y
                 Case "RECTANGLE"
-                    w = wRect
+                    W = wRect
                     h = Int(PDFFontSize)
-                    PDFTextOut "", X, Y
+                    PDFTextOut "", x, y
                 Case "CELL"
-                    w = Int(PDFGetStringWidth(strTLink, PDFFontName, PDFFontSize))
+                    W = Int(PDFGetStringWidth(strTLink, PDFFontName, PDFFontSize))
                     h = Int(PDFFontSize)
-                    PDFTextOut "", X, Y
+                    PDFTextOut "", x, y
                 Case Else
-                    w = Int(PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize))
+                    W = Int(PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize))
                     h = Int(PDFFontSize)
-                    PDFTextOut str_Text, X, Y
+                    PDFTextOut str_Text, x, y
             End Select
         End If
 
@@ -1306,22 +1306,22 @@ Dim h As Integer
     strTyLink = ""
     If str_Link = "" Then str_Link = str_Text
     
-    PDFTabLinks X, Y, w, h, str_Text, str_Link
+    PDFTabLinks x, y, W, h, str_Text, str_Link
 
     PDFOutStream sTempStream, "%FIN_LINK/%"
     
 End Sub
-Private Sub PDFTabLinks(X As Double, Y As Double, w As Integer, h As Integer, str_Text As String, Optional str_Link As Variant = 0)
+Private Sub PDFTabLinks(x As Double, y As Double, W As Integer, h As Integer, str_Text As String, Optional str_Link As Variant = 0)
 Attribute PDFTabLinks.VB_HelpID = 2071
 
     FPageLink = FPageLink + 1
     ReDim Preserve LinksList(1 To FPageLink)
-    LinksList(FPageLink) = Array(FPageNumber, Y, str_Link)
+    LinksList(FPageLink) = Array(FPageNumber, y, str_Link)
 
     If str_Link <> 0 Then
-        PageLinksList(FPageNumber, FPageLink) = Array(X * in_Ech, PDFCanvasHeight(in_Canvas) - Y * in_Ech, w * in_Ech, h * in_Ech, str_Link)
+        PageLinksList(FPageNumber, FPageLink) = Array(x * in_Ech, PDFCanvasHeight(in_Canvas) - y * in_Ech, W * in_Ech, h * in_Ech, str_Link)
     Else
-        PageLinksList(FPageNumber, FPageLink) = Array(X * in_Ech, PDFCanvasHeight(in_Canvas) - Y * in_Ech, w * in_Ech, h * in_Ech, str_Text)
+        PageLinksList(FPageNumber, FPageLink) = Array(x * in_Ech, PDFCanvasHeight(in_Canvas) - y * in_Ech, W * in_Ech, h * in_Ech, str_Text)
     End If
 
     ReDim Preserve boPageLinksList(1 To FPageNumber)
@@ -1341,7 +1341,7 @@ Property Let PDFSetRotation(pAngle As Double)
     PDFAngle = -1 * pAngle
 
 End Property
-Private Sub PDFStreamRotate(pAngle As Double, X As Double, Y As Double)
+Private Sub PDFStreamRotate(pAngle As Double, x As Double, y As Double)
 
 Dim dSin     As Double
 Dim dCos     As Double
@@ -1352,8 +1352,8 @@ Dim CenterY  As Double
         pAngle = pAngle * 3.1416 / 180
         dCos = Cos(pAngle)
         dSin = Sin(pAngle)
-        CenterX = X * in_Ech
-        CenterY = PDFCanvasHeight(in_Canvas) - Y * in_Ech
+        CenterX = x * in_Ech
+        CenterY = PDFCanvasHeight(in_Canvas) - y * in_Ech
         
         PDFOutStream sTempStream, PDFFormatDouble(dCos, 5) & " " & _
                                   PDFFormatDouble(-1 * dSin, 5) & " " & _
@@ -1366,7 +1366,7 @@ Dim CenterY  As Double
     bAngle = True
     
 End Sub
-Public Sub PDFTextOut(str_Text As String, Optional X As Double = 0, Optional Y As Double = 0)
+Public Sub PDFTextOut(str_Text As String, Optional x As Double = 0, Optional y As Double = 0)
 Attribute PDFTextOut.VB_HelpID = 2072
 
 Dim j               As Integer
@@ -1381,8 +1381,8 @@ Dim str_TmpText     As String
     
     str_Tmp = ""
 
-    If X = 0 Then X = in_xCurrent
-    If Y = 0 Then Y = in_yCurrent
+    If x = 0 Then x = in_xCurrent
+    If y = 0 Then y = in_yCurrent
     
     If PDFFontName = "" Then
         in_PositionFont = 1
@@ -1397,15 +1397,15 @@ Dim str_TmpText     As String
 
     If PDFFontSize = 0 Then PDFFontSize = 10
     If PDFTextColor <> "" Then PDFOutStream sTempStream, "q " & PDFTextColor & " "
-    If boPDFUnderline Then str_Tmp = PDFUnderline(False, str_Text, CDbl(X * in_Ech), CDbl(Y * in_Ech))
+    If boPDFUnderline Then str_Tmp = PDFUnderline(False, str_Text, CDbl(x * in_Ech), CDbl(y * in_Ech))
     
     PDFOutStream sTempStream, "%DEBUT_TEXT/%"
     PDFOutStream sTempStream, "BT"
     
     If PDFAngle = 0 Then
-        PDFOutStream sTempStream, PDFFormatDouble((X + PDFlMargin) * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " Td"
+        PDFOutStream sTempStream, PDFFormatDouble((x + PDFlMargin) * in_Ech) & " " & PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " Td"
     Else
-        PDFStreamRotate PDFAngle, X, Y
+        PDFStreamRotate PDFAngle, x, y
         PDFAngle = 0
     End If
     
@@ -1432,8 +1432,8 @@ Dim str_TmpText     As String
     
     boPDFUnderline = False
 
-    in_xCurrent = X + PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize)
-    in_yCurrent = Y + PDFFontSize
+    in_xCurrent = x + PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize)
+    in_yCurrent = y + PDFFontSize
 
 End Sub
 Property Let PDFSetBorder(gBorder As PDFBorderValue)
@@ -1466,7 +1466,7 @@ Property Let PDFSetFill(bFill As Boolean)
     PDFboTempFill = bFill
 
 End Property
-Public Sub PDFCell(str_Text As String, X As Double, Y As Double, w As Double, h As Double, Optional URLLink As String = "")
+Public Sub PDFCell(str_Text As String, x As Double, y As Double, W As Double, h As Double, Optional URLLink As String = "")
   
 Dim WidthMax    As Double
 Dim lText       As Integer
@@ -1481,10 +1481,10 @@ Dim iSep        As Integer
 Dim i, j, l     As Integer
 Dim nl          As Integer
 
-    tWidth = w
-    yPos = Y
+    tWidth = W
+    yPos = y
     
-    WidthMax = (w - 2 * PDFcMargin) * 10 / PDFFontSize
+    WidthMax = (W - 2 * PDFcMargin) * 10 / PDFFontSize
     lText = Len(str_Text)
     
     If lText > 0 And Right(str_Text, lText - 1) = vbNewLine Then
@@ -1518,7 +1518,7 @@ Dim nl          As Integer
         
         If sCar = vbCrLf Then
             PDFstrTempBorder = bBorder1
-            PDFCell2 Mid(str_Text, j, i - j), X, yPos, tWidth, h
+            PDFCell2 Mid(str_Text, j, i - j), x, yPos, tWidth, h
             yPos = in_yCurrent
             
             bMulti = True
@@ -1545,13 +1545,13 @@ Dim nl          As Integer
                 If i = j Then i = i + 1
                 
                 PDFstrTempBorder = bBorder1
-                PDFCell2 Mid(str_Text, j, i - j), X, yPos, tWidth, h
+                PDFCell2 Mid(str_Text, j, i - j), x, yPos, tWidth, h
                 yPos = in_yCurrent
                                
                 bMulti = True
             Else
                 PDFstrTempBorder = bBorder1
-                PDFCell2 Mid(str_Text, j, iSep - j), X - PDFcMargin, yPos, tWidth, h
+                PDFCell2 Mid(str_Text, j, iSep - j), x - PDFcMargin, yPos, tWidth, h
                 yPos = in_yCurrent
             
                 bMulti = True
@@ -1577,7 +1577,7 @@ Dim nl          As Integer
     End If
     
     yPos = IIf(bMulti, in_yCurrent, yPos)
-    PDFCell2 Mid(str_Text, j, i - j), X - PDFcMargin, yPos, tWidth, h
+    PDFCell2 Mid(str_Text, j, i - j), x - PDFcMargin, yPos, tWidth, h
     
     boPDFUnderline = False
     
@@ -1606,7 +1606,7 @@ Dim in_i   As Integer
     PDFGetNumberOfCar = iNbCar
     
 End Function
-Private Sub PDFCell2(str_Text As String, X As Double, Y As Double, w As Double, h As Double, Optional URLLink As String = "")
+Private Sub PDFCell2(str_Text As String, x As Double, y As Double, W As Double, h As Double, Optional URLLink As String = "")
 Attribute PDFCell2.VB_HelpID = 2073
 
 Dim j               As Integer
@@ -1661,9 +1661,9 @@ Dim str_Tmp1        As String
             str_Tmp = "S"
         End If
         
-        str_TmpSTR = PDFFormatDouble(X * in_Ech) & " " & _
-                     PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " " & _
-                     PDFFormatDouble(w * in_Ech) & " " & _
+        str_TmpSTR = PDFFormatDouble(x * in_Ech) & " " & _
+                     PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " " & _
+                     PDFFormatDouble(W * in_Ech) & " " & _
                      PDFFormatDouble(-h * in_Ech) & " re " & str_Tmp & vbCr
     End If
 
@@ -1671,21 +1671,21 @@ Dim str_Tmp1        As String
         PDFOutStream sTempStream, PDFFormatDouble(PDFLnWidth * in_Ech) & " w"
     
         If InStr(1, PDFstrTempBorder, "L", 1) <> 0 Then _
-            str_TmpSTR = str_TmpSTR & PDFFormatDouble(X * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " m " & PDFFormatDouble(X * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + h) * in_Ech) & " l S" & vbCr
+            str_TmpSTR = str_TmpSTR & PDFFormatDouble(x * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " m " & PDFFormatDouble(x * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + h) * in_Ech) & " l S" & vbCr
         If InStr(1, PDFstrTempBorder, "T", 1) <> 0 Then _
-            str_TmpSTR = str_TmpSTR & PDFFormatDouble(X * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " m " & PDFFormatDouble(X * in_Ech + w * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " l S " & vbCr
+            str_TmpSTR = str_TmpSTR & PDFFormatDouble(x * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " m " & PDFFormatDouble(x * in_Ech + W * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " l S " & vbCr
         If InStr(1, PDFstrTempBorder, "R", 1) <> 0 Then _
-            str_TmpSTR = str_TmpSTR & PDFFormatDouble(X * in_Ech + w * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - Y * in_Ech) & " m " & PDFFormatDouble(X * in_Ech + w * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + h) * in_Ech) & " l S " & vbCr
+            str_TmpSTR = str_TmpSTR & PDFFormatDouble(x * in_Ech + W * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - y * in_Ech) & " m " & PDFFormatDouble(x * in_Ech + W * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + h) * in_Ech) & " l S " & vbCr
         If InStr(1, PDFstrTempBorder, "B", 1) <> 0 Then _
-            str_TmpSTR = str_TmpSTR & PDFFormatDouble(X * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + h) * in_Ech) & " m " & PDFFormatDouble(X * in_Ech + w * in_Ech) & " " & _
-                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + h) * in_Ech) & " l S " & vbCr
+            str_TmpSTR = str_TmpSTR & PDFFormatDouble(x * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + h) * in_Ech) & " m " & PDFFormatDouble(x * in_Ech + W * in_Ech) & " " & _
+                         PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + h) * in_Ech) & " l S " & vbCr
     End If
 
     PDFstrTempBorder = "0"
@@ -1695,14 +1695,14 @@ Dim str_Tmp1        As String
     Select Case PDFstrTempAlign
         Case "R"
             ltmp = PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize)
-            dx = w * in_Ech - PDFcMargin - Format(ltmp, "###0.00")
+            dx = W * in_Ech - PDFcMargin - Format(ltmp, "###0.00")
         Case "C"
             ltmp = PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize)
-            dx = (w * in_Ech - ltmp) / 2
+            dx = (W * in_Ech - ltmp) / 2
         Case "L"
             dx = 2 * PDFcMargin
         Case "FJ"
-            iWidthMax = (w * in_Ech - (PDFGetNumberOfCar(str_Text, " ") + 1) * PDFcMargin)
+            iWidthMax = (W * in_Ech - (PDFGetNumberOfCar(str_Text, " ") + 1) * PDFcMargin)
             iWidthStr = (iWidthMax - PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize)) / IIf(PDFGetNumberOfCar(str_Text, " ") <> 0, PDFGetNumberOfCar(str_Text, " "), 1)
             PDFOutStream sTempStream, PDFFormatDouble(iWidthStr * in_Ech, 3) & " Tw"
             dx = 2 * PDFcMargin
@@ -1712,15 +1712,15 @@ Dim str_Tmp1        As String
 
     If URLLink <> "" Then
         boPDFUnderline = True
-        PDFTabLinks (X + dx), _
-                (Y + 0.5 * h - 0.5 * PDFFontSize), _
+        PDFTabLinks (x + dx), _
+                (y + 0.5 * h - 0.5 * PDFFontSize), _
                 PDFGetStringWidth(str_Text, PDFFontName, PDFFontSize), _
                 CDbl(PDFFontSize), _
                 str_Text, URLLink
     End If
 
-    If boPDFUnderline Then str_Tmp1 = PDFUnderline(True, str_Text, CDbl((X * in_Ech + dx)), _
-                                                PDFCanvasHeight(in_Canvas) - (Y * in_Ech + 0.5 * h * in_Ech + 0.3 * PDFFontSize))
+    If boPDFUnderline Then str_Tmp1 = PDFUnderline(True, str_Text, CDbl((x * in_Ech + dx)), _
+                                                PDFCanvasHeight(in_Canvas) - (y * in_Ech + 0.5 * h * in_Ech + 0.3 * PDFFontSize))
 
     If PDFTextColor <> "" Then
         PDFOutStream sTempStream, "q " & PDFTextColor & " "
@@ -1730,15 +1730,15 @@ Dim str_Tmp1        As String
     End If
 
     xlink = 0
-    xlink = X
+    xlink = x
 
     yLink = 0
-    yLink = Y
+    yLink = y
     
     PDFOutStream sTempStream, "BT"
     PDFOutStream sTempStream, "/F" & in_PositionFont & " " & PDFFontSize & " Tf"
-    PDFOutStream sTempStream, PDFFormatDouble((X * in_Ech + dx)) & " " & _
-                              PDFFormatDouble((PDFCanvasHeight(in_Canvas) - (Y * in_Ech + 0.5 * h * in_Ech + 0.3 * PDFFontSize))) & _
+    PDFOutStream sTempStream, PDFFormatDouble((x * in_Ech + dx)) & " " & _
+                              PDFFormatDouble((PDFCanvasHeight(in_Canvas) - (y * in_Ech + 0.5 * h * in_Ech + 0.3 * PDFFontSize))) & _
                               " Td"
     PDFOutStream sTempStream, "(" & str_TmpText & ") Tj"
 
@@ -1755,11 +1755,11 @@ Dim str_Tmp1        As String
     PDFSetLink URLLink, "CELL", xlink, yLink
     strTyLink = ""
     
-    in_xCurrent = X + w
-    in_yCurrent = Y + h
+    in_xCurrent = x + W
+    in_yCurrent = y + h
 
 End Sub
-Private Sub PDFSetLink(URLLink As String, OType As String, X As Double, Y As Double)
+Private Sub PDFSetLink(URLLink As String, OType As String, x As Double, y As Double)
 Attribute PDFSetLink.VB_HelpID = 2074
 
     If TypeName(URLLink) = "String" Then
@@ -1769,7 +1769,7 @@ Attribute PDFSetLink.VB_HelpID = 2074
             PDFboImage = False
         End If
 
-        If URLLink <> "" Then PDFLink X, Y, URLLink
+        If URLLink <> "" Then PDFLink x, y, URLLink
         strTLink = ""
         PDFboImage = False
     Else
@@ -1856,7 +1856,7 @@ Dim in_pos   As Integer
     PDFImageHeight = ArrInfo(1)
     
 End Function
-Public Sub PDFImage(pFileName As String, X As Double, Y As Double, Optional w As Double = 0, Optional h As Double = 0, Optional URLLink As String = "")
+Public Sub PDFImage(pFileName As String, x As Double, y As Double, Optional W As Double = 0, Optional h As Double = 0, Optional URLLink As String = "")
 Attribute PDFImage.VB_HelpID = 2075
 
 Dim in_pos   As Integer
@@ -1885,36 +1885,35 @@ Dim ArrInfo  As Variant
         Exit Sub
     End If
 
-    If w = 0 And h = 0 Then
-        w = ArrInfo(0) / in_Ech
+    If W = 0 And h = 0 Then
+        W = ArrInfo(0) / in_Ech
         h = ArrInfo(1) / in_Ech
     End If
 
-    If w = 0 Then w = h * ArrInfo(0) / ArrInfo(1)
-    If h = 0 Then h = w * ArrInfo(1) / ArrInfo(0)
+    If W = 0 Then W = h * ArrInfo(0) / ArrInfo(1)
+    If h = 0 Then h = W * ArrInfo(1) / ArrInfo(0)
 
     NumberofImages = NumberofImages + 1
        
     PDFOutStream sTempStream, "q"
         
-    PDFOutStream sTempStream, PDFFormatDouble(w * in_Ech) & " 0 0 " & _
+    PDFOutStream sTempStream, PDFFormatDouble(W * in_Ech) & " 0 0 " & _
                               PDFFormatDouble(h * in_Ech) & " " & _
-                              PDFFormatDouble(X * in_Ech) & " " & _
-                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (Y + h) * in_Ech) & " cm /ImgJPEG" & _
+                              PDFFormatDouble(x * in_Ech) & " " & _
+                              PDFFormatDouble(PDFCanvasHeight(in_Canvas) - (y + h) * in_Ech) & " cm /ImgJPEG" & _
                               NumberofImages & " Do Q"
     
-    ImgWidth = w
+    ImgWidth = W
     ImgHeight = h
 
-    PDFSetLink URLLink, "IMAGE", X, Y
+    PDFSetLink URLLink, "IMAGE", x, y
 
-    in_xCurrent = (X + w) * in_Ech
-    in_yCurrent = (Y + h) * in_Ech
+    in_xCurrent = (x + W) * in_Ech
+    in_yCurrent = (y + h) * in_Ech
 
 End Sub
 Private Function PDFParseJPG(pFileName As String) As Variant
 Attribute PDFParseJPG.VB_HelpID = 2076
-
 Const OPEN_EXISTING = 3
 Const FILE_SHARE_READ = &H1
 Const GENERIC_READ = &H80000000
@@ -1966,7 +1965,7 @@ Dim ArrBFile()  As Byte
     If PDFIntAsHex(ArrBFile, 1) <> "FFD8" Or PDFIntAsHex(ArrBFile, in_PEnd) <> "FFD9" Then
         MsgBox "Invalid JPEG marker" & _
                 vbNewLine & _
-                "Cannot add iamge to PDF file.", vbCritical, "File Image - " & clsPDFVersion
+                "Cannot add image to PDF file.", vbCritical, "File Image - " & clsPDFVersion
         PDFParseJPG = False
         PDFCloseHandle in_File
         Exit Function
@@ -2564,7 +2563,7 @@ Dim i As Integer
     Strm.WriteLine TempStream
 
 End Sub
-Private Function PDFUnderline(boCell As Boolean, str_Text As String, X As Double, Y As Double) As String
+Private Function PDFUnderline(boCell As Boolean, str_Text As String, x As Double, y As Double) As String
 Attribute PDFUnderline.VB_HelpID = 2091
 
 Dim in_wUp          As Integer
@@ -2594,8 +2593,8 @@ Dim iNbSpace        As Integer
               iWidthStr * iNbSpace - _
               IIf(iWidthStr <> 0, (iNbSpace + 1) * PDFcMargin, 0)
 
-    in_Px = X + PDFlMargin * in_Ech
-    in_Pw = (PDFCanvasHeight(in_Canvas) - (Y - in_wUp / 1000 * PDFFontSize) - 2)
+    in_Px = x + PDFlMargin * in_Ech
+    in_Pw = (PDFCanvasHeight(in_Canvas) - (y - in_wUp / 1000 * PDFFontSize) - 2)
     in_Py = -in_wUt / 1000 * in_wTxt
     str_hLine = PDFFormatDouble(in_Py)
 
@@ -2607,8 +2606,8 @@ Dim iNbSpace        As Integer
         str_TmpUnderl = str_xLeft & " " & str_yTop & " " & str_wText & " " & str_hLine & " re f"
     Else
         str_wText = PDFFormatDouble(in_wTxt - PDFcMargin)
-        str_xLeft = PDFFormatDouble(X)
-        str_yTop = PDFFormatDouble(Y - 3)
+        str_xLeft = PDFFormatDouble(x)
+        str_yTop = PDFFormatDouble(y - 3)
         
         str_TmpUnderl = str_xLeft & " " & str_yTop & " " & str_wText & " " & str_hLine & " re f"
     End If
@@ -2645,12 +2644,12 @@ Attribute PDFCreateFont.VB_HelpID = 2092
 End Sub
 Private Function PDFGetOffsetNumber(offset As String) As String
 Attribute PDFGetOffsetNumber.VB_HelpID = 2094
-Dim X, Y As Long
+Dim x, y As Long
 
-    X = Len(offset)
-    For Y = 1 To 10 - X
+    x = Len(offset)
+    For y = 1 To 10 - x
         PDFGetOffsetNumber = PDFGetOffsetNumber + "0"
-    Next Y
+    Next y
 
     PDFGetOffsetNumber = PDFGetOffsetNumber + offset
 
@@ -2907,15 +2906,15 @@ Public Sub PDFInit()
     Exit Sub
     
 End Sub
-Function PDFSetBookmark(str_Text As String, Optional iLevel As Integer = 0, Optional Y As Double = -1)
+Function PDFSetBookmark(str_Text As String, Optional iLevel As Integer = 0, Optional y As Double = -1)
 
-    If Y = -1 Then Y = in_yCurrent
+    If y = -1 Then y = in_yCurrent
     
     ReDim Preserve aOutlines(0 To iOutlines)
     
     aOutlines(iOutlines).sText = str_Text
     aOutlines(iOutlines).iLevel = iLevel
-    aOutlines(iOutlines).yPos = Y
+    aOutlines(iOutlines).yPos = y
     aOutlines(iOutlines).iPageNb = PDFPageNumber
 
     iOutlines = iOutlines + 1

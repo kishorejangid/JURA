@@ -51,53 +51,24 @@ Begin VB.Form frmSplash
       TabIndex        =   0
       Top             =   50
       Width           =   7275
+      Begin VB.Image logo 
+         Height          =   900
+         Left            =   3360
+         Picture         =   "frmSplash.frx":000C
+         Top             =   720
+         Width           =   2400
+      End
       Begin VB.Image imgLogo 
          Height          =   2385
          Left            =   120
-         Picture         =   "frmSplash.frx":000C
+         Picture         =   "frmSplash.frx":2210
          Stretch         =   -1  'True
          Top             =   1035
          Width           =   2655
       End
-      Begin VB.Label lblCopyright 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Copyright"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   4560
-         TabIndex        =   4
-         Top             =   3420
-         Width           =   2415
-      End
-      Begin VB.Label lblCompany 
-         BackStyle       =   0  'Transparent
-         Caption         =   "Mahadev Stationeries"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   4560
-         TabIndex        =   3
-         Top             =   3660
-         Width           =   2415
-      End
       Begin VB.Label lblWarning 
          BackStyle       =   0  'Transparent
-         Caption         =   "Warning: This Product is copyright Protected"
+         Caption         =   "2010 Jangid Corporation. All rights reserved."
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   8.25
@@ -110,7 +81,7 @@ Begin VB.Form frmSplash
          Height          =   195
          Left            =   255
          TabIndex        =   2
-         Top             =   3735
+         Top             =   3720
          Width           =   6855
       End
       Begin VB.Label lblVersion 
@@ -128,54 +99,15 @@ Begin VB.Form frmSplash
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   6405
-         TabIndex        =   5
-         Top             =   2700
-         Width           =   330
-      End
-      Begin VB.Label lblPlatform 
-         Alignment       =   1  'Right Justify
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Windows"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   360
-         Left            =   5115
-         TabIndex        =   6
-         Top             =   2340
-         Width           =   1500
-      End
-      Begin VB.Label lblProductName 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Product"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   32.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   765
-         Left            =   2880
-         TabIndex        =   8
-         Top             =   1200
-         Width           =   2430
+         Left            =   3525
+         TabIndex        =   3
+         Top             =   1740
+         Width           =   2130
       End
       Begin VB.Label lblLicenseTo 
          Alignment       =   1  'Right Justify
          BackStyle       =   0  'Transparent
-         Caption         =   "LicenseTo: Kishore Jangid"
+         Caption         =   "Licensed To: Francis Xavier Engineering College"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   8.25
@@ -190,25 +122,6 @@ Begin VB.Form frmSplash
          TabIndex        =   1
          Top             =   240
          Width           =   6855
-      End
-      Begin VB.Label lblCompanyProduct 
-         AutoSize        =   -1  'True
-         BackStyle       =   0  'Transparent
-         Caption         =   "Jangid Corporation"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   18
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   435
-         Left            =   3675
-         TabIndex        =   7
-         Top             =   585
-         Width           =   3345
       End
    End
 End
@@ -230,8 +143,6 @@ Private Sub Form_Load()
     m_Trans.hWnd = Me.hWnd
     m_Trans.Alpha = l_val
     lblVersion.Caption = "Version " & App.Major & "." & App.Minor & "." & App.Revision
-    lblProductName.Caption = "JURA™"
-    lblCompanyProduct.Caption = "Jangid Corporation"
     frmSplash.BackColor = Color
 End Sub
 Private Sub Form_Unload(Cancel As Integer)

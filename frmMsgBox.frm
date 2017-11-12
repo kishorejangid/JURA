@@ -44,7 +44,7 @@ Begin VB.Form frmMsgBox
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleGradient   =   2

@@ -4,10 +4,10 @@ Begin VB.MDIForm mdiMain
    AutoShowChildren=   0   'False
    BackColor       =   &H8000000C&
    Caption         =   "JURA"
-   ClientHeight    =   6735
+   ClientHeight    =   8610
    ClientLeft      =   225
    ClientTop       =   555
-   ClientWidth     =   11505
+   ClientWidth     =   14055
    Enabled         =   0   'False
    Icon            =   "mdiMain.frx":0000
    StartUpPosition =   3  'Windows Default
@@ -18,8 +18,8 @@ Begin VB.MDIForm mdiMain
       Left            =   0
       TabIndex        =   0
       Top             =   0
-      Width           =   11505
-      _ExtentX        =   20294
+      Width           =   14055
+      _ExtentX        =   24791
       _ExtentY        =   3069
       BackColor       =   4210752
       ForeColor       =   -2147483630
@@ -336,6 +336,9 @@ Private Sub MDIForm_Load()
     'l = l And Not (WS_MAXIMIZEBOX)
     'l = l Xor WS_CAPTION
     'l = SetWindowLong(Me.hWnd, GWL_STYLE, l)
+    
+    Me.Width = Screen.Width * 0.85
+    Me.Height = Screen.Height * 0.75
            
     Theme = GetSetting(App.CompanyName, "Theme", "Change", 0)
     Ribbon.Theme = Theme 'Set Theme
@@ -354,7 +357,6 @@ Private Sub MDIForm_Load()
     
     
     Ribbon.AddCat "1C1", "T1", "Results Of Student", False
-    Ribbon.AddCat "1C2", "T1", "Print mark Sheet", False
     Ribbon.AddCat "1C3", "T1", "Contact Information", False
     Ribbon.AddCat "1C4", "T1", "Academic Syllabus", False
     Ribbon.AddCat "1C5", "T1", "Email Marks Sheet", False
@@ -379,7 +381,6 @@ Private Sub MDIForm_Load()
     Ribbon.AddCat "5C3", "T5", "System Information", False
     
     Ribbon.AddButton "1B1", "1C1", "          &Marks          ", "3", False, "Click To See Your Marks"
-    Ribbon.AddButton "1B2", "1C2", "          Print          ", "59", False, "Click to print your Mark Sheet"
     Ribbon.AddButton "1B3", "1C3", "          Contact          ", "17", False, "Click to Update your Contact Information"
     Ribbon.AddButton "1B4", "1C4", "          Syllabus          ", "16", False, "Click to view Syllabus"
     Ribbon.AddButton "1B5", "1C5", "          Email          ", "9", False, "Click to Mail Marks Sheet"
@@ -406,11 +407,13 @@ Private Sub MDIForm_Load()
     Ribbon.AddButton "5B2", "5C2", "     Form Color     ", "52", False, "Click to Change the Form Color"
     Ribbon.AddButton "5B3", "5C3", "       Sys Info       ", "21", False, "Click To See System Info"
     Ribbon.Refresh
-       
-    frmToday.Show
 End Sub
 
-
+Private Sub MDIForm_Resize()
+    On Error Resume Next
+    Me.Left = (Screen.Width - Me.Width) / 2
+    Me.Top = Screen.Height * 0.1
+End Sub
 
 Private Sub MDIForm_Unload(Cancel As Integer)
     conn.Close
@@ -452,11 +455,6 @@ End Sub
 Private Sub Ribbon_ButtonClick(ByVal ID As String, ByVal Caption As String)
     If ID = "1B1" Then
         frmMarks.Show
-    ElseIf ID = "1B2" Then
-        frmMarks.Show
-        frmMarks.marks_prgDatabase.Visible = False
-        frmMarks.marks_cmdMarksheet.Visible = True
-        frmMarks.btnPdf.Visible = True
     ElseIf ID = "1B3" Then
         frmContact.Show
     ElseIf ID = "1B4" Then
@@ -520,7 +518,6 @@ Private Sub Ribbon_ButtonClick(ByVal ID As String, ByVal Caption As String)
         Ribbon.Refresh
         mdiMain.Picture = Ribbon.LoadBackground
         mdiMain.BackColor = Ribbon.BackColor
-        frmToday.BackColor = Ribbon.BackColor
         SaveSetting App.CompanyName, "Theme", "Change", Theme
     ElseIf ID = "5B2" Then
         frmTheme.Show

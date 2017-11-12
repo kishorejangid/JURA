@@ -335,8 +335,8 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Attribute VB_Ext_KEY = "PropPageWizardRun" ,"Yes"
-Private Declare Function GetTempFileName Lib "kernel32" Alias "GetTempFileNameA" (ByVal lpszPath As String, ByVal lpPrefixString As String, ByVal wUnique As Long, ByVal lpTempFileName As String) As Long
-Private Declare Function GetTempPath Lib "kernel32" Alias "GetTempPathA" (ByVal nBufferLength As Long, ByVal lpBuffer As String) As Long
+Private Declare Function GetTempFileName Lib "Kernel32" Alias "GetTempFileNameA" (ByVal lpszPath As String, ByVal lpPrefixString As String, ByVal wUnique As Long, ByVal lpTempFileName As String) As Long
+Private Declare Function GetTempPath Lib "Kernel32" Alias "GetTempPathA" (ByVal nBufferLength As Long, ByVal lpBuffer As String) As Long
 Private Const MAX_PATH = 260
 
 Private Const FORMAT_MESSAGE_ALLOCATE_BUFFER = &H100
@@ -346,7 +346,7 @@ Private Const FORMAT_MESSAGE_FROM_STRING = &H400
 Private Const FORMAT_MESSAGE_FROM_SYSTEM = &H1000
 Private Const FORMAT_MESSAGE_IGNORE_INSERTS = &H200
 Private Const FORMAT_MESSAGE_MAX_WIDTH_MASK = &HFF
-Private Declare Function FormatMessage Lib "kernel32" Alias "FormatMessageA" (ByVal dwFlags As Long, lpSource As Any, ByVal dwMessageId As Long, ByVal dwLanguageId As Long, ByVal lpBuffer As String, ByVal nSize As Long, Arguments As Long) As Long
+Private Declare Function FormatMessage Lib "Kernel32" Alias "FormatMessageA" (ByVal dwFlags As Long, lpSource As Any, ByVal dwMessageId As Long, ByVal dwLanguageId As Long, ByVal lpBuffer As String, ByVal nSize As Long, Arguments As Long) As Long
 
 Dim TotalButton As Integer
 Dim TotalTabs As Integer
@@ -381,11 +381,11 @@ Dim TAB_NORMAL
 Dim TAB_SELECTED
 Sub TabNone(Optional Index As Integer = -1)
     If Index <> -1 Then
-        For I = 0 To Index - 1
-            If Tab_center_over(I).Visible = True Then
-                Tab_center_over(I).Visible = False
-                Tab_left_over(I).Visible = False
-                Tab_right_over(I).Visible = False
+        For i = 0 To Index - 1
+            If Tab_center_over(i).Visible = True Then
+                Tab_center_over(i).Visible = False
+                Tab_left_over(i).Visible = False
+                Tab_right_over(i).Visible = False
             End If
         Next
         If Tab_center(Index).Visible = False Then
@@ -393,33 +393,33 @@ Sub TabNone(Optional Index As Integer = -1)
             Tab_left_over(Index).Visible = True
             Tab_right_over(Index).Visible = True
         End If
-        For I = Index + 1 To TabMouse.UBound
-            If Tab_center_over(I).Visible = True Then
-                Tab_center_over(I).Visible = False
-                Tab_left_over(I).Visible = False
-                Tab_right_over(I).Visible = False
+        For i = Index + 1 To TabMouse.UBound
+            If Tab_center_over(i).Visible = True Then
+                Tab_center_over(i).Visible = False
+                Tab_left_over(i).Visible = False
+                Tab_right_over(i).Visible = False
             End If
         Next
     Else
-        For I = 0 To TabMouse.UBound
-            If Tab_center_over(I).Visible = True Then
-                Tab_center_over(I).Visible = False
-                Tab_left_over(I).Visible = False
-                Tab_right_over(I).Visible = False
+        For i = 0 To TabMouse.UBound
+            If Tab_center_over(i).Visible = True Then
+                Tab_center_over(i).Visible = False
+                Tab_left_over(i).Visible = False
+                Tab_right_over(i).Visible = False
             End If
         Next
     End If
 End Sub
 Private Sub CatNone(Optional Index As Integer = -1)
     If Index <> -1 Then
-        For I = 0 To Index - 1
-            If Cat_Center_on(I).Visible = True Then
-                Cat_Center_on(I).Visible = False
-                Cat_Left_on(I).Visible = False
-                Cat_Right_on(I).Visible = False
-                If Cat_Dlg(I).Visible = True Then
-                    Cat_Dlg_on(I).Visible = False
-                    Cat_Dlg_over(I).Visible = False
+        For i = 0 To Index - 1
+            If Cat_Center_on(i).Visible = True Then
+                Cat_Center_on(i).Visible = False
+                Cat_Left_on(i).Visible = False
+                Cat_Right_on(i).Visible = False
+                If Cat_Dlg(i).Visible = True Then
+                    Cat_Dlg_on(i).Visible = False
+                    Cat_Dlg_over(i).Visible = False
                 End If
             End If
         Next
@@ -430,26 +430,26 @@ Private Sub CatNone(Optional Index As Integer = -1)
             Cat_Dlg_on(Index).Visible = True
             Cat_Dlg_over(Index).Visible = False
         End If
-        For I = Index + 1 To CatMouse.UBound
-            If Cat_Center_on(I).Visible = True Then
-                Cat_Center_on(I).Visible = False
-                Cat_Left_on(I).Visible = False
-                Cat_Right_on(I).Visible = False
-                If Cat_Dlg(I).Visible = True Then
-                    Cat_Dlg_on(I).Visible = False
-                    Cat_Dlg_over(I).Visible = False
+        For i = Index + 1 To CatMouse.UBound
+            If Cat_Center_on(i).Visible = True Then
+                Cat_Center_on(i).Visible = False
+                Cat_Left_on(i).Visible = False
+                Cat_Right_on(i).Visible = False
+                If Cat_Dlg(i).Visible = True Then
+                    Cat_Dlg_on(i).Visible = False
+                    Cat_Dlg_over(i).Visible = False
                 End If
             End If
         Next
     Else
-        For I = 0 To CatMouse.UBound
-            If Cat_Center_on(I).Visible = True Then
-                Cat_Center_on(I).Visible = False
-                Cat_Left_on(I).Visible = False
-                Cat_Right_on(I).Visible = False
-                If Cat_Dlg(I).Visible = True Then
-                    Cat_Dlg_on(I).Visible = False
-                    Cat_Dlg_over(I).Visible = False
+        For i = 0 To CatMouse.UBound
+            If Cat_Center_on(i).Visible = True Then
+                Cat_Center_on(i).Visible = False
+                Cat_Left_on(i).Visible = False
+                Cat_Right_on(i).Visible = False
+                If Cat_Dlg(i).Visible = True Then
+                    Cat_Dlg_on(i).Visible = False
+                    Cat_Dlg_over(i).Visible = False
                 End If
             End If
         Next
@@ -462,8 +462,8 @@ Private Sub ButNone(Optional Index As Integer = -1)
                 Button_left(KL).Visible = False
                 Button_right(KL).Visible = False
                 Button_center(KL).Visible = False
-                If Glip_off(I).Visible = True Then
-                    Glip_on(I).Visible = False
+                If Glip_off(i).Visible = True Then
+                    Glip_on(i).Visible = False
                 End If
             End If
         Next
@@ -480,8 +480,8 @@ Private Sub ButNone(Optional Index As Integer = -1)
                 Button_left(KL).Visible = False
                 Button_right(KL).Visible = False
                 Button_center(KL).Visible = False
-                If Glip_off(I).Visible = True Then
-                    Glip_on(I).Visible = False
+                If Glip_off(i).Visible = True Then
+                    Glip_on(i).Visible = False
                 End If
             End If
         Next
@@ -491,24 +491,24 @@ Private Sub ButNone(Optional Index As Integer = -1)
                 Button_left(KL).Visible = False
                 Button_right(KL).Visible = False
                 Button_center(KL).Visible = False
-                If Glip_off(I).Visible = True Then
-                    Glip_on(I).Visible = False
+                If Glip_off(i).Visible = True Then
+                    Glip_on(i).Visible = False
                 End If
             End If
         Next
     End If
 End Sub
-Private Sub Barra2_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Barra2_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone
     ButNone
 End Sub
-Private Sub BarraLeft_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub BarraLeft_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone
     ButNone
 End Sub
-Private Sub BarraRight_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub BarraRight_MouseMove(Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone
     ButNone
@@ -516,27 +516,27 @@ End Sub
 Private Sub ButMouse_Click(Index As Integer)
     RaiseEvent ButtonClick(ButMouse(Index).Tag, Button_Caption(Index).Caption)
 End Sub
-Private Sub ButMouse_MouseDown(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub ButMouse_MouseDown(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     Button_left_over(Index).Visible = True
     Button_center_over(Index).Visible = True
     Button_right_over(Index).Visible = True
 End Sub
-Private Sub ButMouse_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub ButMouse_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone Button_center(Index).Tag
     ButNone Index
 End Sub
-Private Sub ButMouse_MouseUp(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub ButMouse_MouseUp(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     Button_left_over(Index).Visible = False
     Button_center_over(Index).Visible = False
     Button_right_over(Index).Visible = False
 End Sub
-Private Sub Cat_Dlg_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Cat_Dlg_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone Index
     ButNone
 End Sub
-Private Sub Cat_Dlg_on_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub Cat_Dlg_on_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone Index
     ButNone
@@ -545,34 +545,34 @@ End Sub
 Private Sub Cat_Dlg_over_Click(Index As Integer)
     RaiseEvent CatClick(Cat_Caption(Index).Tag, Cat_Caption(Index).Caption)
 End Sub
-Private Sub CatMouse_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub CatMouse_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone
     CatNone Index
     ButNone
 End Sub
 Private Sub TabMouse_Click(Index As Integer)
     TabNone
-    For I = 0 To Index - 1
-        Tab_center(I).Visible = False
-        Tab_left(I).Visible = False
-        Tab_right(I).Visible = False
-        Tab_caption(I).ForeColor = TAB_NORMAL
+    For i = 0 To Index - 1
+        Tab_center(i).Visible = False
+        Tab_left(i).Visible = False
+        Tab_right(i).Visible = False
+        Tab_caption(i).ForeColor = TAB_NORMAL
     Next
     Tab_caption(Index).ForeColor = TAB_SELECTED
     Tab_center(Index).Visible = True
     Tab_left(Index).Visible = True
     Tab_right(Index).Visible = True
-    For I = Index + 1 To TabMouse.UBound
-        Tab_center(I).Visible = False
-        Tab_left(I).Visible = False
-        Tab_right(I).Visible = False
-        Tab_caption(I).ForeColor = TAB_NORMAL
+    For i = Index + 1 To TabMouse.UBound
+        Tab_center(i).Visible = False
+        Tab_left(i).Visible = False
+        Tab_right(i).Visible = False
+        Tab_caption(i).ForeColor = TAB_NORMAL
     Next
     TabSelected = TabID(Index)
     CatsUpdate
     RaiseEvent TabClick(TabID(Index), TabC(Index))
 End Sub
-Private Sub TabMouse_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Private Sub TabMouse_MouseMove(Index As Integer, Button As Integer, Shift As Integer, x As Single, y As Single)
     TabNone Index
     CatNone
     ButNone
@@ -595,75 +595,75 @@ Private Sub UserControl_Initialize()
 End Sub
 Private Sub TabsUpdate()
     On Error Resume Next
-    For I = 1 To (TotalTabs - 1)
-        Unload Tab_caption(I)
-        Unload Tab_left(I)
-        Unload Tab_center(I)
-        Unload Tab_right(I)
-        Unload Tab_left_over(I)
-        Unload Tab_center_over(I)
-        Unload Tab_right_over(I)
-        Unload TabMouse(I)
+    For i = 1 To (TotalTabs - 1)
+        Unload Tab_caption(i)
+        Unload Tab_left(i)
+        Unload Tab_center(i)
+        Unload Tab_right(i)
+        Unload Tab_left_over(i)
+        Unload Tab_center_over(i)
+        Unload Tab_right_over(i)
+        Unload TabMouse(i)
     Next
-    For I = 0 To (TotalTabs - 1)
-        If I <> 0 Then
-            Load Tab_caption(I)
-            Load Tab_left(I)
-            Load Tab_center(I)
-            Load Tab_right(I)
-            Load Tab_left_over(I)
-            Load Tab_center_over(I)
-            Load Tab_right_over(I)
-            Load TabMouse(I)
-            Tab_left(I).Left = Tab_right(I - 1).Left + Tab_right(I).Width
+    For i = 0 To (TotalTabs - 1)
+        If i <> 0 Then
+            Load Tab_caption(i)
+            Load Tab_left(i)
+            Load Tab_center(i)
+            Load Tab_right(i)
+            Load Tab_left_over(i)
+            Load Tab_center_over(i)
+            Load Tab_right_over(i)
+            Load TabMouse(i)
+            Tab_left(i).Left = Tab_right(i - 1).Left + Tab_right(i).Width
         Else
             Tab_left(0).Left = 90
         End If
-        TabMouse(I).Left = Tab_left(I).Left
+        TabMouse(i).Left = Tab_left(i).Left
         
-        Tab_caption(I).Top = 0 + 60
-        Tab_center(I).Top = 0
-        Tab_left(I).Top = 0
-        Tab_right(I).Top = 0
-        Tab_center_over(I).Top = 0
-        Tab_left_over(I).Top = 0
-        Tab_right_over(I).Top = 0
-        TabMouse(I).Top = 0
+        Tab_caption(i).Top = 0 + 60
+        Tab_center(i).Top = 0
+        Tab_left(i).Top = 0
+        Tab_right(i).Top = 0
+        Tab_center_over(i).Top = 0
+        Tab_left_over(i).Top = 0
+        Tab_right_over(i).Top = 0
+        TabMouse(i).Top = 0
         
-        Tab_caption(I) = TabC(I)
-        Tab_center(I).Width = Tab_caption(I).Width
-        Tab_center(I).Left = Tab_left(I).Left + Tab_left(I).Width
-        Tab_caption(I).Left = Tab_center(I).Left
-        Tab_right(I).Left = Tab_center(I).Left + Tab_center(I).Width
+        Tab_caption(i) = TabC(i)
+        Tab_center(i).Width = Tab_caption(i).Width
+        Tab_center(i).Left = Tab_left(i).Left + Tab_left(i).Width
+        Tab_caption(i).Left = Tab_center(i).Left
+        Tab_right(i).Left = Tab_center(i).Left + Tab_center(i).Width
         
-        Tab_center_over(I).Width = Tab_center(I).Width
-        Tab_center_over(I).Left = Tab_center(I).Left
-        Tab_left_over(I).Left = Tab_left(I).Left
-        Tab_right_over(I).Left = Tab_right(I).Left
+        Tab_center_over(i).Width = Tab_center(i).Width
+        Tab_center_over(i).Left = Tab_center(i).Left
+        Tab_left_over(i).Left = Tab_left(i).Left
+        Tab_right_over(i).Left = Tab_right(i).Left
         
-        TabMouse(I).Width = Tab_left(I).Width + Tab_right(I).Width + Tab_center(I).Width
+        TabMouse(i).Width = Tab_left(i).Width + Tab_right(i).Width + Tab_center(i).Width
         
-        Tab_caption(I).ForeColor = TAB_NORMAL
+        Tab_caption(i).ForeColor = TAB_NORMAL
         
-        Tab_caption(I).Visible = True
-        If I = 0 Then
-            Tab_center(I).Visible = True
-            Tab_left(I).Visible = True
-            Tab_right(I).Visible = True
-            Tab_caption(I).ForeColor = TAB_SELECTED
+        Tab_caption(i).Visible = True
+        If i = 0 Then
+            Tab_center(i).Visible = True
+            Tab_left(i).Visible = True
+            Tab_right(i).Visible = True
+            Tab_caption(i).ForeColor = TAB_SELECTED
         End If
-        TabMouse(I).Visible = True
+        TabMouse(i).Visible = True
     
-        Tab_center(I).ZOrder 0
-        Tab_left(I).ZOrder 0
-        Tab_right(I).ZOrder 0
+        Tab_center(i).ZOrder 0
+        Tab_left(i).ZOrder 0
+        Tab_right(i).ZOrder 0
         
-        Tab_center_over(I).ZOrder 0
-        Tab_left_over(I).ZOrder 0
-        Tab_right_over(I).ZOrder 0
+        Tab_center_over(i).ZOrder 0
+        Tab_left_over(i).ZOrder 0
+        Tab_right_over(i).ZOrder 0
         
-        Tab_caption(I).ZOrder 0
-        TabMouse(I).ZOrder 0
+        Tab_caption(i).ZOrder 0
+        TabMouse(i).ZOrder 0
     Next
 End Sub
 Private Sub CatsUpdate()
@@ -684,40 +684,40 @@ Private Sub CatsUpdate()
     Dim CatsTT(30) As String
     Dim CatsDT(30) As Boolean
     TotalCatsT = 0
-    For I = 0 To TotalCats
-        If CatsT(I) = TabSelected And TabSelected <> "" And CatsT(I) <> "" Then
-            CatsIDT(TotalCatsT) = CatsID(I)
-            CatsTT(TotalCatsT) = CatsT(I)
-            CatsCT(TotalCatsT) = CatsC(I)
-            CatsDT(TotalCatsT) = CatsD(I)
+    For i = 0 To TotalCats
+        If CatsT(i) = TabSelected And TabSelected <> "" And CatsT(i) <> "" Then
+            CatsIDT(TotalCatsT) = CatsID(i)
+            CatsTT(TotalCatsT) = CatsT(i)
+            CatsCT(TotalCatsT) = CatsC(i)
+            CatsDT(TotalCatsT) = CatsD(i)
             TotalCatsT = TotalCatsT + 1
         End If
     Next
-    For I = 1 To CatMouse.UBound
-            Unload Cat_Left_off(I)
-            Unload Cat_Left_on(I)
-            Unload Cat_Right_off(I)
-            Unload Cat_Right_on(I)
-            Unload Cat_Center_off(I)
-            Unload Cat_Center_on(I)
-            Unload Cat_Caption(I)
-            Unload CatMouse(I)
-            Unload Cat_Dlg(I)
-            Unload Cat_Dlg_on(I)
-            Unload Cat_Dlg_over(I)
+    For i = 1 To CatMouse.UBound
+            Unload Cat_Left_off(i)
+            Unload Cat_Left_on(i)
+            Unload Cat_Right_off(i)
+            Unload Cat_Right_on(i)
+            Unload Cat_Center_off(i)
+            Unload Cat_Center_on(i)
+            Unload Cat_Caption(i)
+            Unload CatMouse(i)
+            Unload Cat_Dlg(i)
+            Unload Cat_Dlg_on(i)
+            Unload Cat_Dlg_over(i)
     Next
-    For I = 1 To Button_center.UBound
-        Unload Button_left(I)
-        Unload Button_center(I)
-        Unload Button_right(I)
-        Unload Button_left_over(I)
-        Unload Button_center_over(I)
-        Unload Button_right_over(I)
-        Unload Button_Caption(I)
-        Unload Button_Icon(I)
-        Unload Glip_on(I)
-        Unload Glip_off(I)
-        Unload ButMouse(I)
+    For i = 1 To Button_center.UBound
+        Unload Button_left(i)
+        Unload Button_center(i)
+        Unload Button_right(i)
+        Unload Button_left_over(i)
+        Unload Button_center_over(i)
+        Unload Button_right_over(i)
+        Unload Button_Caption(i)
+        Unload Button_Icon(i)
+        Unload Glip_on(i)
+        Unload Glip_off(i)
+        Unload ButMouse(i)
     Next
     Button_left(0).Visible = False
     Button_center(0).Visible = False
@@ -737,90 +737,90 @@ Private Sub CatsUpdate()
     Cat_Dlg(0).Visible = False
     Cat_Dlg_on(0).Visible = False
     Cat_Dlg_over(0).Visible = False
-    For I = 0 To (TotalCatsT - 1)
-        If I <> 0 Then
-            Load Cat_Left_off(I)
-            Load Cat_Left_on(I)
-            Load Cat_Right_off(I)
-            Load Cat_Right_on(I)
-            Load Cat_Center_off(I)
-            Load Cat_Center_on(I)
-            Load Cat_Caption(I)
-            Load CatMouse(I)
-            Load Cat_Dlg(I)
-            Load Cat_Dlg_on(I)
-            Load Cat_Dlg_over(I)
-            Cat_Left_off(I).Left = Cat_Right_off(I - 1).Left + Cat_Right_off(I).Width
+    For i = 0 To (TotalCatsT - 1)
+        If i <> 0 Then
+            Load Cat_Left_off(i)
+            Load Cat_Left_on(i)
+            Load Cat_Right_off(i)
+            Load Cat_Right_on(i)
+            Load Cat_Center_off(i)
+            Load Cat_Center_on(i)
+            Load Cat_Caption(i)
+            Load CatMouse(i)
+            Load Cat_Dlg(i)
+            Load Cat_Dlg_on(i)
+            Load Cat_Dlg_over(i)
+            Cat_Left_off(i).Left = Cat_Right_off(i - 1).Left + Cat_Right_off(i).Width
         Else
-            Cat_Left_off(I).Left = 120
+            Cat_Left_off(i).Left = 120
         End If
-        CatMouse(I).Left = Cat_Left_off(I).Left
+        CatMouse(i).Left = Cat_Left_off(i).Left
         
-        Cat_Caption(I).Caption = CatsCT(I)
-        Cat_Caption(I).Tag = CatsIDT(I)
+        Cat_Caption(i).Caption = CatsCT(i)
+        Cat_Caption(i).Tag = CatsIDT(i)
         
-        Cat_Center_off(I).Left = Cat_Left_off(I).Left + Cat_Left_off(I).Width
+        Cat_Center_off(i).Left = Cat_Left_off(i).Left + Cat_Left_off(i).Width
         
-        BUTSIZE = ButtonsUpdate(CatsIDT(I), Cat_Center_off(I).Left, I + 0)
+        BUTSIZE = ButtonsUpdate(CatsIDT(i), Cat_Center_off(i).Left, i + 0)
         
-        If CatsDT(I) = True Then
-            Cat_Center_off(I).Width = Cat_Caption(I).Width + Cat_Dlg(I).Width
+        If CatsDT(i) = True Then
+            Cat_Center_off(i).Width = Cat_Caption(i).Width + Cat_Dlg(i).Width
         Else
-            Cat_Center_off(I).Width = Cat_Caption(I).Width
-        End If
-        
-        If Cat_Center_off(I).Width < BUTSIZE Then
-            Cat_Center_off(I).Width = BUTSIZE
-            Cat_Caption(I).Left = Cat_Center_off(I).Left + ((Cat_Center_off(I).Width - Cat_Caption(I).Width) / 2)
-        Else
-            Cat_Caption(I).Left = Cat_Center_off(I).Left
+            Cat_Center_off(i).Width = Cat_Caption(i).Width
         End If
         
-        Cat_Right_off(I).Left = Cat_Center_off(I).Left + Cat_Center_off(I).Width
+        If Cat_Center_off(i).Width < BUTSIZE Then
+            Cat_Center_off(i).Width = BUTSIZE
+            Cat_Caption(i).Left = Cat_Center_off(i).Left + ((Cat_Center_off(i).Width - Cat_Caption(i).Width) / 2)
+        Else
+            Cat_Caption(i).Left = Cat_Center_off(i).Left
+        End If
         
-        Cat_Center_on(I).Width = Cat_Center_off(I).Width
-        Cat_Center_on(I).Left = Cat_Center_off(I).Left
-        Cat_Left_on(I).Left = Cat_Left_off(I).Left
-        Cat_Right_on(I).Left = Cat_Right_off(I).Left
+        Cat_Right_off(i).Left = Cat_Center_off(i).Left + Cat_Center_off(i).Width
         
-        CatMouse(I).Width = Cat_Left_off(I).Width + Cat_Right_off(I).Width + Cat_Center_off(I).Width
+        Cat_Center_on(i).Width = Cat_Center_off(i).Width
+        Cat_Center_on(i).Left = Cat_Center_off(i).Left
+        Cat_Left_on(i).Left = Cat_Left_off(i).Left
+        Cat_Right_on(i).Left = Cat_Right_off(i).Left
         
-        Cat_Caption(I).Visible = True
-        Cat_Center_off(I).Visible = True
-        Cat_Left_off(I).Visible = True
-        Cat_Right_off(I).Visible = True
-        CatMouse(I).Visible = True
+        CatMouse(i).Width = Cat_Left_off(i).Width + Cat_Right_off(i).Width + Cat_Center_off(i).Width
+        
+        Cat_Caption(i).Visible = True
+        Cat_Center_off(i).Visible = True
+        Cat_Left_off(i).Visible = True
+        Cat_Right_off(i).Visible = True
+        CatMouse(i).Visible = True
     
-        Cat_Center_off(I).ZOrder 0
-        Cat_Left_off(I).ZOrder 0
-        Cat_Right_off(I).ZOrder 0
+        Cat_Center_off(i).ZOrder 0
+        Cat_Left_off(i).ZOrder 0
+        Cat_Right_off(i).ZOrder 0
         
-        Cat_Center_on(I).ZOrder 0
-        Cat_Left_on(I).ZOrder 0
-        Cat_Right_on(I).ZOrder 0
+        Cat_Center_on(i).ZOrder 0
+        Cat_Left_on(i).ZOrder 0
+        Cat_Right_on(i).ZOrder 0
         
-        Cat_Caption(I).ZOrder 0
-        CatMouse(I).ZOrder 0
+        Cat_Caption(i).ZOrder 0
+        CatMouse(i).ZOrder 0
         
-        Cat_Dlg(I).Left = (Cat_Right_off(I).Left - Cat_Dlg(I).Width) + 15
-        Cat_Dlg(I).Top = (Cat_Right_off(I).Top + Cat_Right_off(I).Height) - (Cat_Dlg(I).Height + 60)
+        Cat_Dlg(i).Left = (Cat_Right_off(i).Left - Cat_Dlg(i).Width) + 15
+        Cat_Dlg(i).Top = (Cat_Right_off(i).Top + Cat_Right_off(i).Height) - (Cat_Dlg(i).Height + 60)
         
-        Cat_Dlg_on(I).Left = Cat_Dlg(I).Left
-        Cat_Dlg_over(I).Left = Cat_Dlg(I).Left
+        Cat_Dlg_on(i).Left = Cat_Dlg(i).Left
+        Cat_Dlg_over(i).Left = Cat_Dlg(i).Left
         
-        Cat_Dlg_on(I).Top = Cat_Dlg(I).Top
-        Cat_Dlg_over(I).Top = Cat_Dlg(I).Top
+        Cat_Dlg_on(i).Top = Cat_Dlg(i).Top
+        Cat_Dlg_over(i).Top = Cat_Dlg(i).Top
         
         
-        Cat_Dlg_on(I).Visible = False
-        Cat_Dlg_over(I).Visible = False
+        Cat_Dlg_on(i).Visible = False
+        Cat_Dlg_over(i).Visible = False
         
-        If CatsDT(I) = True Then
-            Cat_Dlg(I).Visible = True
+        If CatsDT(i) = True Then
+            Cat_Dlg(i).Visible = True
         End If
-        Cat_Dlg(I).ZOrder 0
-        Cat_Dlg_on(I).ZOrder 0
-        Cat_Dlg_over(I).ZOrder 0
+        Cat_Dlg(i).ZOrder 0
+        Cat_Dlg_on(i).ZOrder 0
+        Cat_Dlg_over(i).ZOrder 0
     Next
     DoEvents
     For KL = 0 To ButMouse.UBound
@@ -920,14 +920,14 @@ Private Function ButtonsUpdate(SubCat As String, PosIni As Integer, CatID As Int
     Dim TopBuGT(90) As Boolean
     TotalSize = 0
     TotalButtonT = 0
-    For I = 0 To TotalButton
-        If TopBuS(I) = SubCat Then
-            TopBuIDT(TotalButtonT) = TopBuID(I)
-            TopBuST(TotalButtonT) = TopBuS(I)
-            TopBuCT(TotalButtonT) = TopBuC(I)
-            TopBuTT(TotalButtonT) = TopBuT(I)
-            Set TopBuIT(TotalButtonT) = TopBuI(I)
-            TopBuGT(TotalButtonT) = TopBuG(I)
+    For i = 0 To TotalButton
+        If TopBuS(i) = SubCat Then
+            TopBuIDT(TotalButtonT) = TopBuID(i)
+            TopBuST(TotalButtonT) = TopBuS(i)
+            TopBuCT(TotalButtonT) = TopBuC(i)
+            TopBuTT(TotalButtonT) = TopBuT(i)
+            Set TopBuIT(TotalButtonT) = TopBuI(i)
+            TopBuGT(TotalButtonT) = TopBuG(i)
             TotalButtonT = TotalButtonT + 1
         End If
     Next
@@ -938,97 +938,97 @@ Private Function ButtonsUpdate(SubCat As String, PosIni As Integer, CatID As Int
     Button_Icon(0).Visible = True
     ButMouse(0).Visible = True
     xt = ButMouse.UBound + 1
-    For I = xt To (TotalButtonT - 1) + xt
-        If I <> 0 Then
-            Load Button_left(I)
-            Load Button_center(I)
-            Load Button_right(I)
-            Load Button_left_over(I)
-            Load Button_center_over(I)
-            Load Button_right_over(I)
-            Load Button_Caption(I)
-            Load Button_Icon(I)
-            Load Glip_on(I)
-            Load Glip_off(I)
-            Load ButMouse(I)
+    For i = xt To (TotalButtonT - 1) + xt
+        If i <> 0 Then
+            Load Button_left(i)
+            Load Button_center(i)
+            Load Button_right(i)
+            Load Button_left_over(i)
+            Load Button_center_over(i)
+            Load Button_right_over(i)
+            Load Button_Caption(i)
+            Load Button_Icon(i)
+            Load Glip_on(i)
+            Load Glip_off(i)
+            Load ButMouse(i)
         End If
-        ButMouse(I).Tag = TopBuIDT(I - xt)
+        ButMouse(i).Tag = TopBuIDT(i - xt)
         
-        Button_center(I).Tag = CatID
+        Button_center(i).Tag = CatID
 
-        ButMouse(I).Top = Cat_Left_off(0).Top + 60
-        Button_left(I).Top = ButMouse(I).Top
-        Button_center(I).Top = ButMouse(I).Top
-        Button_right(I).Top = ButMouse(I).Top
-        Button_left_over(I).Top = ButMouse(I).Top
-        Button_center_over(I).Top = ButMouse(I).Top
-        Button_right_over(I).Top = ButMouse(I).Top
+        ButMouse(i).Top = Cat_Left_off(0).Top + 60
+        Button_left(i).Top = ButMouse(i).Top
+        Button_center(i).Top = ButMouse(i).Top
+        Button_right(i).Top = ButMouse(i).Top
+        Button_left_over(i).Top = ButMouse(i).Top
+        Button_center_over(i).Top = ButMouse(i).Top
+        Button_right_over(i).Top = ButMouse(i).Top
         
-        If I = xt Then
+        If i = xt Then
             posatu = PosIni
         Else
-            posatu = ButMouse(I - 1).Left + ButMouse(I - 1).Width + 30
+            posatu = ButMouse(i - 1).Left + ButMouse(i - 1).Width + 30
         End If
-        ButMouse(I).Left = posatu
-        Button_left(I).Left = ButMouse(I).Left
-        Button_left_over(I).Left = Button_left(I).Left
-        Button_center(I).Left = Button_left(I).Left + Button_left(I).Width
-        Button_center_over(I).Left = Button_center(I).Left
+        ButMouse(i).Left = posatu
+        Button_left(i).Left = ButMouse(i).Left
+        Button_left_over(i).Left = Button_left(i).Left
+        Button_center(i).Left = Button_left(i).Left + Button_left(i).Width
+        Button_center_over(i).Left = Button_center(i).Left
         
-        Button_Caption(I).Caption = TopBuCT(I - xt)
+        Button_Caption(i).Caption = TopBuCT(i - xt)
         
-        Set Button_Icon(I) = TopBuIT(I - xt)
+        Set Button_Icon(i) = TopBuIT(i - xt)
         
         If m_BC = True Then
-            ESP = Button_center(I).Height - (Button_Icon(I).Height + Button_Caption(I).Height)
-            If TopBuGT(I - xt) = True Then
-                Button_Icon(I).Top = Button_center(I).Top + ((ESP - (Button_Caption(I).Height / 2)) / 2)
+            ESP = Button_center(i).Height - (Button_Icon(i).Height + Button_Caption(i).Height)
+            If TopBuGT(i - xt) = True Then
+                Button_Icon(i).Top = Button_center(i).Top + ((ESP - (Button_Caption(i).Height / 2)) / 2)
             Else
-                Button_Icon(I).Top = Button_center(I).Top + ((ESP) / 2)
+                Button_Icon(i).Top = Button_center(i).Top + ((ESP) / 2)
             End If
         Else
-            Button_Icon(I).Top = Button_center(I).Top + 90
+            Button_Icon(i).Top = Button_center(i).Top + 90
         End If
             
         
-        Button_Caption(I).Top = Button_Icon(I).Top + Button_Icon(I).Height
+        Button_Caption(i).Top = Button_Icon(i).Top + Button_Icon(i).Height
         
-        Glip_off(I).Top = Button_Caption(I).Top + Button_Caption(I).Height + ((Button_Caption(I).Height - Glip_off(I).Height) / 2)
-        Glip_on(I).Top = Glip_off(I).Top
+        Glip_off(i).Top = Button_Caption(i).Top + Button_Caption(i).Height + ((Button_Caption(i).Height - Glip_off(i).Height) / 2)
+        Glip_on(i).Top = Glip_off(i).Top
         
         
-        If Button_Caption(I).Width > Button_Icon(I).Width Then
-            Button_Caption(I).Left = Button_center(I).Left
-            esp2 = (Button_Caption(I).Width - Button_Icon(I).Width) / 2
-            Button_Icon(I).Left = Button_Caption(I).Left + esp2
-            Area = Button_Caption(I).Width
+        If Button_Caption(i).Width > Button_Icon(i).Width Then
+            Button_Caption(i).Left = Button_center(i).Left
+            esp2 = (Button_Caption(i).Width - Button_Icon(i).Width) / 2
+            Button_Icon(i).Left = Button_Caption(i).Left + esp2
+            Area = Button_Caption(i).Width
         Else
-            Button_Icon(I).Left = Button_center(I).Left
-            esp2 = (Button_Icon(I).Width - Button_Caption(I).Width) / 2
-            Button_Caption(I).Left = Button_Icon(I).Left + esp2
-            Area = Button_Icon(I).Width
+            Button_Icon(i).Left = Button_center(i).Left
+            esp2 = (Button_Icon(i).Width - Button_Caption(i).Width) / 2
+            Button_Caption(i).Left = Button_Icon(i).Left + esp2
+            Area = Button_Icon(i).Width
         End If
     
-        Glip_off(I).Left = Button_Caption(I).Left + ((Button_Caption(I).Width - Glip_on(I).Width) / 2)
-        Glip_on(I).Left = Glip_off(I).Left
+        Glip_off(i).Left = Button_Caption(i).Left + ((Button_Caption(i).Width - Glip_on(i).Width) / 2)
+        Glip_on(i).Left = Glip_off(i).Left
     
-        Button_center(I).Width = Area
-        Button_center_over(I).Width = Button_center(I).Width
-        Button_right(I).Left = Button_center(I).Left + Button_center(I).Width
-        Button_right_over(I).Left = Button_right(I).Left
-        ButMouse(I).Width = (Button_right(I).Width + Button_right(I).Width) + Button_center(I).Width
+        Button_center(i).Width = Area
+        Button_center_over(i).Width = Button_center(i).Width
+        Button_right(i).Left = Button_center(i).Left + Button_center(i).Width
+        Button_right_over(i).Left = Button_right(i).Left
+        ButMouse(i).Width = (Button_right(i).Width + Button_right(i).Width) + Button_center(i).Width
         
-        ButMouse(I).ToolTipText = TopBuTT(I - xt)
-        Button_Icon(I).Visible = True
-        Button_Caption(I).Visible = True
-        ButMouse(I).Visible = True
-        If TopBuGT(I - xt) = True Then
-            Glip_off(I).Visible = True
-            Glip_off(I).ZOrder 0
-            Glip_on(I).ZOrder 0
+        ButMouse(i).ToolTipText = TopBuTT(i - xt)
+        Button_Icon(i).Visible = True
+        Button_Caption(i).Visible = True
+        ButMouse(i).Visible = True
+        If TopBuGT(i - xt) = True Then
+            Glip_off(i).Visible = True
+            Glip_off(i).ZOrder 0
+            Glip_on(i).ZOrder 0
         End If
     
-        TotalSize = TotalSize + ButMouse(I).Width + 30
+        TotalSize = TotalSize + ButMouse(i).Width + 30
     Next
     ButtonsUpdate = TotalSize - 30
 End Function

@@ -3,14 +3,14 @@ Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmNewSubject 
    BorderStyle     =   0  'None
    Caption         =   "New Subject"
-   ClientHeight    =   5085
+   ClientHeight    =   5055
    ClientLeft      =   0
    ClientTop       =   -30
    ClientWidth     =   6615
    Icon            =   "frmNewSubject.frx":0000
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   5085
+   ScaleHeight     =   5055
    ScaleWidth      =   6615
    ShowInTaskbar   =   0   'False
    Begin vkUserContolsXP.vkFrame fNewSubject 
@@ -29,13 +29,13 @@ Begin VB.Form frmNewSubject
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   8438015
       TitleColor2     =   33023
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       BorderWidth     =   2
       Begin vkUserContolsXP.vkLabel lblCredit 
@@ -86,6 +86,7 @@ Begin VB.Form frmNewSubject
          DisplayPicture  =   0   'False
       End
       Begin VB.ComboBox cmbCredit 
+         Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   9.75
@@ -126,6 +127,7 @@ Begin VB.Form frmNewSubject
          BorderWidth     =   2
       End
       Begin VB.ComboBox cmbBatch 
+         Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   9.75
@@ -329,6 +331,7 @@ Begin VB.Form frmNewSubject
          BorderWidth     =   2
       End
       Begin VB.ComboBox cmbSem 
+         Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   9.75
@@ -345,6 +348,7 @@ Begin VB.Form frmNewSubject
          Width           =   4455
       End
       Begin VB.ComboBox cmbDept 
+         Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "MS Sans Serif"
             Size            =   9.75
@@ -461,16 +465,16 @@ Private Sub cmdInsert_Click()
         MsgBox "Enter Some Data"
         Exit Sub
     End If
-    Dim iCredit As Integer
+    Dim iCredit As String
     If cmbCredit.Text = "" Then
-        iCredit = Null
+        iCredit = vbNullString
     Else
         iCredit = cmbCredit.Text
     End If
     strSubjCode = Trim(txtSubjcode.Text)
     strSubjName = Trim(txtSubjName.Text)
     rs.CursorLocation = adUseClient
-    qr = "insert into subj (subjcode,subjname,semno,dept,batch,credit) values('" & strSubjCode & "','" & strSubjName & "'," & iSem & "," & iDept & "," & Mid(cmbBatch.Text, 3, 2) & "," & iCredit & ")"
+    qr = "insert into subj (subjcode,subjname,semno,dept,batch,credit) values('" & strSubjCode & "','" & strSubjName & "'," & iSem & "," & iDept & "," & Mid(cmbBatch.Text, 3, 2) & ",'" & iCredit & "')"
     rs.Open qr, conn, adOpenDynamic, adLockOptimistic, 1
     If Err.Number <> 0 Then
         MsgBox Error & vbCrLf & "Error Number: " & Err.Number

@@ -20,7 +20,7 @@ Begin VB.Form frmMarks
    Begin vkUserContolsXP.vkFrame fMarks 
       Height          =   8175
       Left            =   0
-      TabIndex        =   6
+      TabIndex        =   7
       Top             =   0
       Width           =   12135
       _ExtentX        =   21405
@@ -36,12 +36,12 @@ Begin VB.Form frmMarks
          Strikethrough   =   0   'False
       EndProperty
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderWidth     =   2
       Begin JURA.StylerButton cmdClose 
          Height          =   255
          Left            =   11640
-         TabIndex        =   35
+         TabIndex        =   36
          Top             =   0
          Width           =   375
          _ExtentX        =   661
@@ -64,7 +64,7 @@ Begin VB.Form frmMarks
       Begin JURA.StylerButton cmdMin 
          Height          =   255
          Left            =   11400
-         TabIndex        =   34
+         TabIndex        =   35
          Top             =   0
          Width           =   255
          _ExtentX        =   450
@@ -85,14 +85,14 @@ Begin VB.Form frmMarks
          RoundedValue    =   1
       End
       Begin vkUserContolsXP.vkFrame vkFrame1 
-         Height          =   2295
+         Height          =   2250
          Left            =   120
-         TabIndex        =   20
+         TabIndex        =   21
          TabStop         =   0   'False
-         Top             =   360
+         Top             =   420
          Width           =   11910
          _ExtentX        =   21008
-         _ExtentY        =   4048
+         _ExtentY        =   3969
          Caption         =   "Enter Your Data"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
@@ -120,7 +120,7 @@ Begin VB.Form frmMarks
             EndProperty
             Height          =   360
             Left            =   8160
-            TabIndex        =   38
+            TabIndex        =   4
             Top             =   720
             Width           =   1335
          End
@@ -157,7 +157,7 @@ Begin VB.Form frmMarks
             EndProperty
             Height          =   360
             Left            =   4920
-            TabIndex        =   36
+            TabIndex        =   2
             Top             =   720
             Width           =   1455
          End
@@ -180,7 +180,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel marks_lblSem 
             Height          =   255
             Left            =   6600
-            TabIndex        =   33
+            TabIndex        =   34
             TabStop         =   0   'False
             Top             =   480
             Width           =   855
@@ -210,14 +210,14 @@ Begin VB.Form frmMarks
             EndProperty
             Height          =   360
             Left            =   6600
-            TabIndex        =   2
+            TabIndex        =   3
             Top             =   720
             Width           =   1335
          End
          Begin vkUserContolsXP.vkLabel marks_lblBatch 
             Height          =   255
             Left            =   4920
-            TabIndex        =   32
+            TabIndex        =   33
             TabStop         =   0   'False
             Top             =   480
             Width           =   495
@@ -260,7 +260,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkTextBox marks_txtName 
             Height          =   375
             Left            =   2760
-            TabIndex        =   31
+            TabIndex        =   32
             TabStop         =   0   'False
             Top             =   1560
             Width           =   3615
@@ -289,7 +289,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel vkLabel1 
             Height          =   255
             Left            =   2760
-            TabIndex        =   30
+            TabIndex        =   31
             TabStop         =   0   'False
             Top             =   1320
             Width           =   495
@@ -320,14 +320,14 @@ Begin VB.Form frmMarks
             Height          =   360
             Left            =   480
             Sorted          =   -1  'True
-            TabIndex        =   3
+            TabIndex        =   5
             Top             =   1560
             Width           =   2055
          End
          Begin vkUserContolsXP.vkLabel marks_lblReg 
             Height          =   255
             Left            =   480
-            TabIndex        =   29
+            TabIndex        =   30
             TabStop         =   0   'False
             Top             =   1320
             Width           =   975
@@ -348,7 +348,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel lblRank 
             Height          =   255
             Left            =   9120
-            TabIndex        =   28
+            TabIndex        =   29
             TabStop         =   0   'False
             Top             =   1320
             Width           =   615
@@ -370,7 +370,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel marks_lblPercentagge 
             Height          =   255
             Left            =   7920
-            TabIndex        =   27
+            TabIndex        =   28
             TabStop         =   0   'False
             Top             =   1320
             Width           =   990
@@ -391,7 +391,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel marks_lblTotal 
             Height          =   255
             Left            =   6600
-            TabIndex        =   26
+            TabIndex        =   27
             TabStop         =   0   'False
             Top             =   1320
             Width           =   615
@@ -412,7 +412,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkTextBox marks_txtTotal 
             Height          =   375
             Left            =   6600
-            TabIndex        =   25
+            TabIndex        =   26
             TabStop         =   0   'False
             Top             =   1560
             Width           =   1095
@@ -442,7 +442,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkTextBox marks_txtPercentage 
             Height          =   375
             Left            =   7920
-            TabIndex        =   24
+            TabIndex        =   25
             TabStop         =   0   'False
             Top             =   1560
             Width           =   975
@@ -472,7 +472,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkTextBox txtRank 
             Height          =   375
             Left            =   9120
-            TabIndex        =   23
+            TabIndex        =   24
             TabStop         =   0   'False
             Top             =   1560
             Width           =   975
@@ -502,7 +502,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkTextBox txtPrevRank 
             Height          =   375
             Left            =   10320
-            TabIndex        =   22
+            TabIndex        =   23
             Top             =   1560
             Width           =   975
             _ExtentX        =   1720
@@ -531,7 +531,8 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel lblPrevRank 
             Height          =   255
             Left            =   10320
-            TabIndex        =   21
+            TabIndex        =   22
+            TabStop         =   0   'False
             Top             =   1320
             Width           =   855
             _ExtentX        =   1508
@@ -553,7 +554,7 @@ Begin VB.Form frmMarks
       Begin vkUserContolsXP.vkFrame marks_frmSemMarks 
          Height          =   4815
          Left            =   120
-         TabIndex        =   18
+         TabIndex        =   19
          TabStop         =   0   'False
          Top             =   2760
          Width           =   7815
@@ -576,7 +577,7 @@ Begin VB.Form frmMarks
          Begin MSHierarchicalFlexGridLib.MSHFlexGrid marks_MSHFlexGrid1 
             Height          =   3975
             Left            =   240
-            TabIndex        =   19
+            TabIndex        =   20
             TabStop         =   0   'False
             Top             =   480
             Width           =   7335
@@ -609,7 +610,7 @@ Begin VB.Form frmMarks
       Begin vkUserContolsXP.vkFrame marks_frmRank 
          Height          =   2415
          Left            =   8040
-         TabIndex        =   16
+         TabIndex        =   17
          TabStop         =   0   'False
          Top             =   2760
          Width           =   3975
@@ -632,7 +633,7 @@ Begin VB.Form frmMarks
          Begin MSHierarchicalFlexGridLib.MSHFlexGrid marks_MSHFlexGrid2 
             Height          =   1815
             Left            =   240
-            TabIndex        =   17
+            TabIndex        =   18
             TabStop         =   0   'False
             Top             =   360
             Width           =   3495
@@ -657,7 +658,7 @@ Begin VB.Form frmMarks
       Begin vkUserContolsXP.vkFrame marks_frmTotal 
          Height          =   2295
          Left            =   8040
-         TabIndex        =   8
+         TabIndex        =   9
          TabStop         =   0   'False
          Top             =   5280
          Width           =   3975
@@ -677,10 +678,36 @@ Begin VB.Form frmMarks
          TitleColor2     =   33023
          TitleGradient   =   2
          BorderColor     =   33023
-         Begin vkUserContolsXP.vkLabel vkLabel4 
+         Begin vkUserContolsXP.vkLabel lblArrear 
             Height          =   375
             Index           =   0
             Left            =   240
+            TabIndex        =   16
+            TabStop         =   0   'False
+            Top             =   480
+            Width           =   1575
+            _ExtentX        =   2778
+            _ExtentY        =   661
+            BorderStyle     =   1
+            BorderColor     =   33023
+            BackColor       =   16777215
+            BackStyle       =   0
+            Caption         =   ""
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Alignment       =   2
+         End
+         Begin vkUserContolsXP.vkLabel lblArrear 
+            Height          =   375
+            Index           =   1
+            Left            =   2040
             TabIndex        =   15
             TabStop         =   0   'False
             Top             =   480
@@ -703,13 +730,13 @@ Begin VB.Form frmMarks
             EndProperty
             Alignment       =   2
          End
-         Begin vkUserContolsXP.vkLabel vkLabel4 
+         Begin vkUserContolsXP.vkLabel lblArrear 
             Height          =   375
-            Index           =   1
-            Left            =   2040
+            Index           =   2
+            Left            =   240
             TabIndex        =   14
             TabStop         =   0   'False
-            Top             =   480
+            Top             =   960
             Width           =   1575
             _ExtentX        =   2778
             _ExtentY        =   661
@@ -729,10 +756,10 @@ Begin VB.Form frmMarks
             EndProperty
             Alignment       =   2
          End
-         Begin vkUserContolsXP.vkLabel vkLabel4 
+         Begin vkUserContolsXP.vkLabel lblArrear 
             Height          =   375
-            Index           =   2
-            Left            =   240
+            Index           =   3
+            Left            =   2040
             TabIndex        =   13
             TabStop         =   0   'False
             Top             =   960
@@ -755,37 +782,11 @@ Begin VB.Form frmMarks
             EndProperty
             Alignment       =   2
          End
-         Begin vkUserContolsXP.vkLabel vkLabel4 
-            Height          =   375
-            Index           =   3
-            Left            =   2040
-            TabIndex        =   12
-            TabStop         =   0   'False
-            Top             =   960
-            Width           =   1575
-            _ExtentX        =   2778
-            _ExtentY        =   661
-            BorderStyle     =   1
-            BorderColor     =   33023
-            BackColor       =   16777215
-            BackStyle       =   0
-            Caption         =   ""
-            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   700
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Alignment       =   2
-         End
-         Begin vkUserContolsXP.vkLabel vkLabel4 
+         Begin vkUserContolsXP.vkLabel lblArrear 
             Height          =   375
             Index           =   4
             Left            =   240
-            TabIndex        =   11
+            TabIndex        =   12
             TabStop         =   0   'False
             Top             =   1440
             Width           =   1575
@@ -807,11 +808,11 @@ Begin VB.Form frmMarks
             EndProperty
             Alignment       =   2
          End
-         Begin vkUserContolsXP.vkLabel vkLabel4 
+         Begin vkUserContolsXP.vkLabel lblArrear 
             Height          =   375
             Index           =   5
             Left            =   2040
-            TabIndex        =   10
+            TabIndex        =   11
             TabStop         =   0   'False
             Top             =   1440
             Width           =   1575
@@ -836,7 +837,7 @@ Begin VB.Form frmMarks
          Begin vkUserContolsXP.vkLabel lblmorearrears 
             Height          =   240
             Left            =   240
-            TabIndex        =   9
+            TabIndex        =   10
             TabStop         =   0   'False
             Top             =   1920
             Visible         =   0   'False
@@ -864,36 +865,15 @@ Begin VB.Form frmMarks
             Interval        =   10
          End
       End
-      Begin vkUserContolsXP.vkCommand marks_cmdMarksheet 
-         Height          =   375
-         Left            =   120
-         TabIndex        =   4
-         Top             =   7680
-         Visible         =   0   'False
-         Width           =   5895
-         _ExtentX        =   10398
-         _ExtentY        =   661
-         Caption         =   "Print MarkSheet"
-         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-      End
       Begin vkUserContolsXP.vkCommand btnPdf 
          Height          =   375
-         Left            =   6120
-         TabIndex        =   5
+         Left            =   8040
+         TabIndex        =   6
          Top             =   7680
-         Visible         =   0   'False
-         Width           =   5895
-         _ExtentX        =   10398
+         Width           =   3975
+         _ExtentX        =   7011
          _ExtentY        =   661
-         Caption         =   "Save as PDF File"
+         Caption         =   "Print Marksheet"
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
             Name            =   "MS Sans Serif"
             Size            =   8.25
@@ -907,11 +887,11 @@ Begin VB.Form frmMarks
       Begin vkUserContolsXP.vkBar marks_prgDatabase 
          Height          =   375
          Left            =   120
-         TabIndex        =   7
+         TabIndex        =   8
          TabStop         =   0   'False
          Top             =   7680
-         Width           =   11895
-         _ExtentX        =   20981
+         Width           =   7815
+         _ExtentX        =   13785
          _ExtentY        =   661
          BorderColor     =   33023
          LeftColor       =   33023
@@ -946,7 +926,11 @@ Dim State As Integer
 Dim fTop As Integer
 
 Private Sub btnPdf_Click()
-    Call CreatePDF
+    If iBatch > 2007 Then
+        Call CreatePDF2
+    Else
+        Call CreatePDF
+    End If
 End Sub
 
 Private Sub cmbBatch_Click()
@@ -996,6 +980,7 @@ Private Sub cmdMin_Click()
         fMarks.Height = 310
         fMarks.BorderWidth = 0
         Me.Top = 300
+        CreateRoundRectFromWindow Me, 7, 7
     Else
         State = 1
         cmdMin.Caption = "--"
@@ -1007,12 +992,13 @@ Private Sub cmdMin_Click()
         fMarks.Height = 8160
         fMarks.BorderWidth = 2
         Me.Top = fTop
+        CreateRoundRectFromWindow Me, 7, 7
     End If
 End Sub
 
 Private Sub fMarks_MouseDown(Button As MouseButtonConstants, Shift As Integer, Control As Integer, x As Long, y As Long)
     ReleaseCapture
-    SendMessage hWnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
+    SendMessage hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
 End Sub
 
 Private Sub Form_Load()
@@ -1030,7 +1016,6 @@ Private Sub Form_Load()
     Call marks_MSHFlexGrid1_Load
     Call marks_MSHFlexGrid2_Load
     Call cmbSem_Click
-    Call Arrears
     State = 1
     fTop = Me.Top
 End Sub
@@ -1088,7 +1073,6 @@ Private Sub cmbSem_Click()
         lblPrevRank.Caption = "Sem " & iSem - 1 & " Rank"
         txtPrevRank.Text = StudRank(cmbRegNo.Text, iSem - 1, iDept, iBatch, strSec)
     End If
-    Call Arrears
 End Sub
 
 Private Sub cmbSem_KeyPress(KeyAscii As Integer)
@@ -1098,48 +1082,6 @@ End Sub
 Private Sub cmbSem_LostFocus()
     Call cmbSem_Click
 End Sub
-
-Private Sub marks_cmdMarksheet_Click()                                    'Generate A Report Which Can Be Printed And then  saves it In the html format for mailing
-    On Error GoTo ErrHnd
-    Dim rs As New ADODB.Recordset
-    rs.CursorLocation = adUseClient
-    sql = "select s2.subjcode,s2.subjname,s1.internals,nvl(s1.externals,0) as externals,(s1.internals+nvl(s1.externals,0)) as Sum  from studmarks s1,subj s2 where s1.subjcode=s2.subjcode and s1.semno=s2.semno and s1.dept=s2.dept and s1.batch=s2.batch and s1.semno= " & iSem & " and s1.regno= '" & cmbRegNo.Text & "' and s1.batch=" & Mid(iBatch, 3, 2) & ""
-    rs.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
-    Set DataReport1.DataSource = rs
-    DataReport1.DataMember = rs.DataMember
-    total = 0
-    Do While Not rs.EOF
-        total = total + rs.Fields("Sum")
-        rs.MoveNext
-    Loop
-    DataReport1.Sections("Section2").Controls("label11").Caption = reg
-    DataReport1.Sections("Section2").Controls("label13").Caption = marks_txtName.Text
-    DataReport1.Sections("Section2").Controls("label17").Caption = iSem
-    DataReport1.Sections("Section5").Controls("label9").Caption = marks_txtPercentage.Text
-    DataReport1.Sections("Section5").Controls("label15").Caption = total
-    DataReport1.Sections("Section5").Controls("label21").Caption = arrear(0)
-    DataReport1.Sections("Section5").Controls("label22").Caption = arrear(1)
-    DataReport1.Sections("Section5").Controls("label23").Caption = arrear(2)
-    DataReport1.Sections("Section5").Controls("label24").Caption = arrear(3)
-    DataReport1.Sections("Section5").Controls("label27").Caption = arrear(4)
-    DataReport1.Sections("Section5").Controls("label28").Caption = arrear(5)
-    DataReport1.Sections("Section5").Controls("label29").Caption = arrear(6)
-    DataReport1.Sections("Section5").Controls("label30").Caption = arrear(7)
-    DataReport1.Sections("Section5").Controls("label31").Caption = arrear(8)
-    DataReport1.Sections("Section5").Controls("label32").Caption = arrear(9)
-    DataReport1.Sections("Section5").Controls("label26").Caption = txtRank.Text
-    DataReport1.Sections("Section3").Controls("label18").Caption = Date & " " & Time
-    DataReport1.LeftMargin = 100
-    DataReport1.RightMargin = 100
-    DataReport1.Caption = "Mark Sheet"
-    DataReport1.Show
-    DataReport1.ExportReport rptKeyHTML, App.Path & "\Reports\" & reg & "(" & iSem & ")" & ".html", True, False, rptRangeAllPages
-    Exit Sub
-ErrHnd:
-    MsgBox Error & vbCrLf & "Error Number: " & Err.Number, vbCritical, "Error"
-End Sub
-
-
 
 Private Sub marks_MSHFlexGrid2_DblClick()
     With marks_MSHFlexGrid2
@@ -1154,7 +1096,6 @@ Private Sub marks_timer1_Timer()
 End Sub
 
 Private Sub marks_MSHFlexGrid1_Load()
-    marks_MSHFlexGrid1.Clear
     marks_MSHFlexGrid1.ColWidth(0) = 1175
     marks_MSHFlexGrid1.ColWidth(1) = 3500
     marks_MSHFlexGrid1.ColWidth(2) = 900
@@ -1164,6 +1105,15 @@ Private Sub marks_MSHFlexGrid1_Load()
     
     marks_MSHFlexGrid1.TextMatrix(0, 0) = "Subject Code"
     marks_MSHFlexGrid1.TextMatrix(0, 1) = "Subject Name"
+    marks_MSHFlexGrid1.ColAlignment(0) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignment(2) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignment(3) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignment(4) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignmentFixed(0) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignmentFixed(1) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignmentFixed(2) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignmentFixed(3) = flexAlignCenterCenter
+    marks_MSHFlexGrid1.ColAlignmentFixed(4) = flexAlignCenterCenter
     
     If iBatch > 2007 Then
         marks_MSHFlexGrid1.TextMatrix(0, 2) = "Credit"
@@ -1174,16 +1124,6 @@ Private Sub marks_MSHFlexGrid1_Load()
         marks_MSHFlexGrid1.TextMatrix(0, 3) = "Externals"
         marks_MSHFlexGrid1.TextMatrix(0, 4) = "Marks"
     End If
-    
-    marks_MSHFlexGrid1.ColAlignment(0) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignment(2) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignment(3) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignment(4) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignmentFixed(0) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignmentFixed(1) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignmentFixed(2) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignmentFixed(3) = flexAlignCenterCenter
-    marks_MSHFlexGrid1.ColAlignmentFixed(4) = flexAlignCenterCenter
 End Sub
 
 Private Sub marks_MSHFlexGrid1_Data()
@@ -1196,7 +1136,7 @@ Private Sub marks_MSHFlexGrid1_Data()
         Set marks_MSHFlexGrid1.DataSource = rs
         marks_MSHFlexGrid1.Refresh
         rs.Close
-'        marks_txtTotal.Text = CalcGPA(cmbRegNo.Text, cmbSem.Text, cmbDept.Text, cmbBatch.Text)
+        marks_txtTotal.Text = CalcGPA(cmbRegNo.Text, cmbSem.Text, Department(cmbDept), cmbBatch.Text)
         marks_txtPercentage.Visible = False
         marks_lblPercentagge.Visible = False
         marks_lblTotal.Caption = "GPA"
@@ -1220,6 +1160,8 @@ Private Sub marks_MSHFlexGrid1_Data()
             marks_txtPercentage.Text = Round(total / GetSubjCount(iSem, iDept, iBatch), 2)
         End If
     End If
+    Call Arrears
+    Call marks_MSHFlexGrid1_Load
     Exit Sub
 'ErrHnd:
  '   MsgBox Error & vbCrLf & "Error Number: " & Err.Number, vbCritical, "Error" & "MSHFlexGridData"
@@ -1245,7 +1187,11 @@ Private Sub marks_MSHFlexGrid2_Data()                                     'Popul
     Dim iSubjCount As Integer
     iSubjCount = GetSubjCount(iSem, iDept, iBatch)
     rs.CursorLocation = adUseClient
-    sql = "select s1.regno,round((sum(s1.internals+s1.externals)/" & iSubjCount & "),2) as Percent from studmarks s1,studdetails s2 where s1.dept='" & iDept & "' and s1.batch='" & Mid(iBatch, 3, 2) & "' and s1.semno = '" & iSem & "' and s2.sec='" & strSec & "' and s1.regno=s2.regno group by s1.regno order by 2 desc"
+    If iBatch > 2007 Then
+        sql = "SELECT s1.regno,round(sum(s1.value*s2.credit)/(select sum(credit) FROM subj WHERE batch='" & Mid(iBatch, 3, 2) & "' AND semno='" & iSem & "' AND dept='" & iDept & "'),2) AS GPA FROM studmarks s1,subj s2,studdetails s3 WHERE s1.batch='" & Mid(iBatch, 3, 2) & "' AND s1.semno='" & iSem & "' AND s1.subjcode=s2.subjcode and s1.semno=s2.semno and s1.dept=s2.dept and s1.batch=s2.batch and s1.regno=s3.regno and s3.sec='" & strSec & "'   GROUP BY s1.regno order by 2 desc"
+    Else
+        sql = "select s1.regno,round((sum(s1.internals+s1.externals)/" & iSubjCount & "),2) as Percent from studmarks s1,studdetails s2 where s1.dept='" & iDept & "' and s1.batch='" & Mid(iBatch, 3, 2) & "' and s1.semno = '" & iSem & "' and s2.sec='" & strSec & "' and s1.regno=s2.regno group by s1.regno order by 2 desc"
+    End If
     rs.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
     Set marks_MSHFlexGrid2.DataSource = rs
     marks_MSHFlexGrid2.Refresh
@@ -1263,23 +1209,45 @@ Private Sub Arrears()
     Dim r, C, z As Integer
     lblmorearrears.Visible = False
     For z = 0 To 5
-        vkLabel4(z).Caption = ""
+        lblArrear(z).Caption = ""
     Next
     For C = 0 To 9
         arrear(C) = ""
     Next
     C = 0
-    For r = 1 To marks_MSHFlexGrid1.rows - 1
-        If marks_MSHFlexGrid1.TextMatrix(r, 4) = "" Then
-            arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
-            vkLabel4(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
-            C = C + 1
-        ElseIf marks_MSHFlexGrid1.TextMatrix(r, 4) < 50 Then
-            arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
-            vkLabel4(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
-            C = C + 1
-        End If
-    Next
+    If iBatch > 2007 Then
+        For r = 1 To marks_MSHFlexGrid1.rows - 1
+            If marks_MSHFlexGrid1.TextMatrix(r, 4) = "" Then
+                arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                lblArrear(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                C = C + 1
+            ElseIf marks_MSHFlexGrid1.TextMatrix(r, 4) = "U" Then
+                arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                lblArrear(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                C = C + 1
+            ElseIf marks_MSHFlexGrid1.TextMatrix(r, 4) = "I" Then
+                arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                lblArrear(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                C = C + 1
+            ElseIf marks_MSHFlexGrid1.TextMatrix(r, 4) = "W" Then
+                arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                lblArrear(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                C = C + 1
+            End If
+        Next
+    Else
+        For r = 1 To marks_MSHFlexGrid1.rows - 1
+            If marks_MSHFlexGrid1.TextMatrix(r, 4) = "" Then
+                arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                lblArrear(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                C = C + 1
+            ElseIf marks_MSHFlexGrid1.TextMatrix(r, 4) < 50 Then
+                arrear(C) = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                lblArrear(C).Caption = marks_MSHFlexGrid1.TextMatrix(r, 0)
+                C = C + 1
+            End If
+        Next
+    End If
     If Err.Number <> 0 Then
         If Err.Number = 340 Then
             lblmorearrears.Visible = True
@@ -1381,6 +1349,110 @@ Private Sub CreatePDF()                                                   'Creat
         PDF.PDFTextOut marks_txtTotal.Text, 3.65, 8.25 + i * 0.7
         PDF.PDFTextOut "Percentage:", 1.5, 8.85 + i * 0.7
         PDF.PDFTextOut marks_txtPercentage.Text, 3.65, 8.85 + i * 0.7
+        
+        PDF.PDFTextOut "Faculty Advisor", 2, 27
+        PDF.PDFTextOut "H.O.D", 16, 27
+                                                        
+        
+    PDF.PDFEndDoc                                                         'Ends The Page
+    
+    
+End Sub
+
+Private Sub CreatePDF2()                                                   'Create a MarksSheet in Pdf Format
+    On Error Resume Next
+    Dim PDF As New clsPDF                                                  'Calls the Pdf Class
+    Dim i, j As Integer
+    Dim dLeft As Double
+    
+    PDF.PDFTitle = "MarksSheet" 'Pdf Title
+    PDF.PDFFileName = App.Path & "\Reports\" & cmbRegNo.Text & "(" & cmbSem.Text & ")" & ".pdf"  'Saves The Pdf In the filename as Students Regno and Semester In the Folder Report at application Folder
+    PDF.PDFLoadAfm = App.Path & "\Fonts"                                  'Font used in Pdf
+    
+    PDF.PDFView = True
+    
+    PDF.PDFSetBorder = BORDER_ALL
+    PDF.PDFSetTopMargin = 1
+    PDF.PDFSetBottomMargin = 1
+    PDF.PDFSetRightMargin = 1
+    PDF.PDFSetLeftMargin = 1
+    PDF.PDFBeginDoc                                                       'Begins a new Page
+        
+        PDF.PDFDrawRectangle 1, 1, 19, 27                                 'Page Border
+        
+        PDF.PDFImage App.Path & "\Images\UniLogo.jpg", 2, 2, 2, 2.1     'Anna Univ Logo
+        
+        PDF.PDFSetTextColor = vbBlack
+        PDF.PDFSetFont FONT_TIMES, 21, FONT_BOLD
+        dLeft = PDF.PDFGetStringWidth("ANNA UNIVERSITY - TIRUNELVELI", "Times-Bold", 21)
+        dLeft = (19 - (dLeft * 2.54) / 72) / 2
+        PDF.PDFTextOut "ANNA UNIVERSITY - TIRUNELVELI", dLeft, 2
+        
+        PDF.PDFSetFont FONT_TIMES, 12, FONT_BOLD
+        dLeft = PDF.PDFGetStringWidth("U.G. DEGREE EXAMINATIONS RESULT " & strExamMonth & " - " & strExamYer, "Times-Bold", 12)
+        dLeft = (19 - (dLeft * 2.54) / 72) / 2
+        PDF.PDFTextOut "U.G. DEGREE EXAMINATIONS RESULT " & strExamMonth & " - " & strExamYear, dLeft, 2.75
+        
+        dLeft = PDF.PDFGetStringWidth("MARK STATEMENT FOR " & Sem2Word(CInt(cmbSem.Text)) & " SEMESTER", "Times-Bold", 12)
+        
+        dLeft = (19 - (dLeft * 2.54) / 72) / 2
+        PDF.PDFTextOut "MARK STATEMENT FOR " & Sem2Word(CInt(cmbSem.Text)) & "  SEMESTER", dLeft, 3.35
+                                            
+        PDF.PDFTextOut "Register Number:", 1, 5.25
+        PDF.PDFTextOut cmbRegNo.Text, 5.5, 5.25
+        PDF.PDFTextOut "Student Name:", 1, 5.85
+        PDF.PDFTextOut GetStudName(cmbRegNo.Text), 5.5, 5.85
+        PDF.PDFTextOut "Branch:", 1, 6.45
+        
+        If cmbDept.Text = "Information Technology" Then
+            PDF.PDFTextOut "B.Tech - " & cmbDept.Text, 5.5, 6.45
+        Else
+            PDF.PDFTextOut "B.E - " & cmbDept.Text, 5.5, 6.45
+        End If
+        
+        PDF.PDFSetLineWidth = 0.03
+        PDF.PDFDrawLineHor 1, 7, 19
+        PDF.PDFDrawLineHor 1, 7.7, 19
+        
+                
+        
+        
+        PDF.PDFSetTextColor = vbBlack
+        PDF.PDFSetFont FONT_TIMES, 12, FONT_BOLD
+        PDF.PDFTextOut "Subject Code", 1, 7.5
+        PDF.PDFTextOut "Subject Name", 4, 7.5
+        PDF.PDFTextOut "Internals", 11.65, 7.5
+        PDF.PDFTextOut "Grade", 14.5, 7.5
+        PDF.PDFTextOut "Result", 16.75, 7.5
+        
+        
+        
+        PDF.PDFSetTextColor = vbBlack
+        PDF.PDFSetFont FONT_TIMES, 12, FONT_NORMAL
+        For i = 1 To GetSubjCount(iSem, iDept, iBatch)                                                 'Gets Marks From The MSHFlexGrid1
+            PDF.PDFTextOut marks_MSHFlexGrid1.TextMatrix(i, 0), 1.5, 7.75 + i * 0.7
+            PDF.PDFTextOut Mid(marks_MSHFlexGrid1.TextMatrix(i, 1), 1, 37), 4, 7.75 + i * 0.7
+            PDF.PDFTextOut marks_MSHFlexGrid1.TextMatrix(i, 3), 12.2, 7.75 + i * 0.7
+            PDF.PDFTextOut marks_MSHFlexGrid1.TextMatrix(i, 4), 14.95, 7.75 + i * 0.7
+            If marks_MSHFlexGrid1.TextMatrix(i, 4) = "U" Then
+                PDF.PDFTextOut "F", 17.25, 7.75 + i * 0.7
+            ElseIf marks_MSHFlexGrid1.TextMatrix(i, 4) = "I" Then
+                PDF.PDFTextOut "F", 17.25, 7.75 + i * 0.7
+            ElseIf marks_MSHFlexGrid1.TextMatrix(i, 4) = "W" Then
+                PDF.PDFTextOut "F", 17.25, 7.75 + i * 0.7
+            ElseIf marks_MSHFlexGrid1.TextMatrix(i, 4) = "AB" Then
+                PDF.PDFTextOut "AB", 17.25, 7.75 + i * 0.7
+            Else
+                PDF.PDFTextOut "P", 17.25, 7.75 + i * 0.7
+            End If
+        Next
+        
+        PDF.PDFSetLineWidth = 0.03
+        PDF.PDFDrawLineHor 1, 7.65 + i * 0.7, 19
+        
+        
+        PDF.PDFTextOut "G.P.A:", 1.5, 8.25 + i * 0.7
+        PDF.PDFTextOut marks_txtTotal.Text, 3.65, 8.25 + i * 0.7
         
         'PDF.PDFTextOut "Faculty Advisor", 2, 27
         'PDF.PDFTextOut "H.O.D", 16, 27

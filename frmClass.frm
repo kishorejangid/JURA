@@ -2,15 +2,15 @@ VERSION 5.00
 Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmClass 
    BorderStyle     =   0  'None
-   ClientHeight    =   3480
+   ClientHeight    =   3495
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   4440
+   ClientWidth     =   4455
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   3480
-   ScaleWidth      =   4440
+   ScaleHeight     =   3495
+   ScaleWidth      =   4455
    ShowInTaskbar   =   0   'False
    Begin vkUserContolsXP.vkLabel lblSec 
       Height          =   255
@@ -52,7 +52,7 @@ Begin VB.Form frmClass
          Strikethrough   =   0   'False
       EndProperty
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderWidth     =   2
       Begin vkUserContolsXP.vkCommand cmdPrint 
          Height          =   375
@@ -345,9 +345,16 @@ Private Sub cmdPrint_Click()
     End If
 End Sub
 
+Private Sub fClass_MouseDown(Button As MouseButtonConstants, Shift As Integer, Control As Integer, x As Long, y As Long)
+    ReleaseCapture
+    SendMessage hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0&
+End Sub
+
 Private Sub Form_Load()
     CreateRoundRectFromWindow Me, 7, 7
     Me.BackColor = mdiMain.BackColor
+    Me.Top = (mdiMain.Height - Me.Height) / 5
+    Me.Left = (mdiMain.Width - Me.Width) / 2
     Call frmColor(frmClass)
     Call cmbDept_Load(cmbDept)
     Call cmbBatch_Load(cmbBatch)
@@ -708,7 +715,7 @@ Private Sub CreateGradePDF()
         
         iprgValue = 100 / rsRegNo.RecordCount
         
-        For i = 1 To rsRegNo.RecordCount / 2
+        For i = 1 To (rsRegNo.RecordCount / 2) + 1
                     
             PDF.PDFNewPage
         
@@ -754,6 +761,7 @@ Private Sub CreateGradePDF()
                 PDF.PDFDrawLine 1, 5.3, 20, 5.3
                 
                 'Student 1
+                If rsRegNo.EOF Then GoTo LoopComplete
                 
                 strRegNo = rsRegNo.Fields(0)
                 sqlMarks = "select subjcode,internals,grade,result from studmarks where semno=" & iSem & " and batch=" & Mid(iBatch, 3, 2) & "and regno='" & strRegNo & "' order by subjcode"
@@ -862,6 +870,10 @@ Private Sub CreateGradePDF()
                 'Student 2
                 
                 rsRegNo.MoveNext
+                If rsRegNo.EOF = True Then
+                    GoTo LoopComplete
+                End If
+                
                 strRegNo = rsRegNo.Fields(0)
                 sqlMarks = "select subjcode,internals,grade,result from studmarks where semno=" & iSem & " and batch=" & Mid(iBatch, 3, 2) & "and regno='" & strRegNo & "' order by subjcode"
                 rsMarks.Open sqlMarks, conn, adOpenDynamic, adLockOptimistic
@@ -957,7 +969,7 @@ Private Sub CreateGradePDF()
                 
                 PDF.PDFTextOut "GPA:", 13.5, 6 + (k + 3.5 + j + 1.45) * 0.7
                 PDF.PDFTextOut CalcGPA(strRegNo, iSem, iDept, iBatch), 15.15, 6 + (k + 3.5 + j + 1.45) * 0.7
-                                                
+LoopComplete:
             
                 PDF.PDFSetLineWidth = 0.03
                 PDF.PDFDrawLine 1, 6 + (k + 3.5 + j + 1.75) * 0.7, 20, 6 + (k + 3.5 + j + 1.75) * 0.7

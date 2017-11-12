@@ -4,17 +4,17 @@ Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmContact 
    BorderStyle     =   0  'None
    Caption         =   "Contact Information"
-   ClientHeight    =   6705
+   ClientHeight    =   6720
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   9810
+   ClientWidth     =   9825
    Icon            =   "frmContact.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MDIChild        =   -1  'True
    MinButton       =   0   'False
-   ScaleHeight     =   6705
-   ScaleWidth      =   9810
+   ScaleHeight     =   6720
+   ScaleWidth      =   9825
    ShowInTaskbar   =   0   'False
    Begin JURA.StylerButton cmdClose 
       Height          =   255
@@ -22,22 +22,14 @@ Begin VB.Form frmContact
       TabIndex        =   39
       Top             =   0
       Width           =   375
-      _ExtentX        =   661
-      _ExtentY        =   450
-      Caption         =   "X"
-      CaptionDisableColor=   12236471
-      CaptionEffectColor=   16777215
-      FocusDottedRect =   0   'False
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      RoundedValue    =   1
+      _extentx        =   661
+      _extenty        =   450
+      caption         =   "X"
+      captiondisablecolor=   12236471
+      captioneffectcolor=   16777215
+      focusdottedrect =   0   'False
+      font            =   "frmContact.frx":57E2
+      roundedvalue    =   1
    End
    Begin JURA.StylerButton cmdMin 
       Height          =   255
@@ -45,22 +37,14 @@ Begin VB.Form frmContact
       TabIndex        =   38
       Top             =   0
       Width           =   255
-      _ExtentX        =   450
-      _ExtentY        =   450
-      Caption         =   "-"
-      CaptionDisableColor=   12236471
-      CaptionEffectColor=   16777215
-      FocusDottedRect =   0   'False
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      RoundedValue    =   1
+      _extentx        =   450
+      _extenty        =   450
+      caption         =   "-"
+      captiondisablecolor=   12236471
+      captioneffectcolor=   16777215
+      focusdottedrect =   0   'False
+      font            =   "frmContact.frx":580E
+      roundedvalue    =   1
    End
    Begin vkUserContolsXP.vkFrame fContact 
       Height          =   6705
@@ -77,13 +61,13 @@ Begin VB.Form frmContact
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   33023
       TitleColor2     =   8438015
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       RoundAngle      =   5
       BorderWidth     =   2
@@ -397,7 +381,7 @@ Begin VB.Form frmContact
             BorderStyle     =   1  'Fixed Single
             Height          =   3135
             Left            =   -240
-            Picture         =   "frmContact.frx":57E2
+            Picture         =   "frmContact.frx":583A
             Stretch         =   -1  'True
             Top             =   0
             Width           =   3255
@@ -558,9 +542,9 @@ Begin VB.Form frmContact
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         ItemData        =   "frmContact.frx":1056E
+         ItemData        =   "frmContact.frx":105C6
          Left            =   1560
-         List            =   "frmContact.frx":10570
+         List            =   "frmContact.frx":105C8
          TabIndex        =   2
          Top             =   1200
          Width           =   4695
@@ -1080,7 +1064,7 @@ End Sub
 
 Private Sub Form_Load()
     CreateRoundRectFromWindow Me, 7, 7
-    Me.Top = (mdiMain.Height - Me.Height) / 5
+    Me.Top = 250
     Me.Left = (mdiMain.Width - Me.Width) / 2
     Me.BackColor = mdiMain.BackColor
     Call frmColor(frmContact)

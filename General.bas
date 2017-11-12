@@ -5,6 +5,7 @@ Private LoginTable As Boolean
 Private StuddetailsTable As Boolean
 Private StudmarksTable As Boolean
 Private SubjTable As Boolean
+Private DeptTable As Boolean
 Sub Main()
     
     'Fetch Theme from Registry
@@ -24,6 +25,7 @@ Sub Main()
     LoginTable = GetSetting(App.CompanyName, "DataBase", "LoginTable", False)
     StuddetailsTable = GetSetting(App.CompanyName, "DataBase", "StuddetailsTable", False)
     SubjTable = GetSetting(App.CompanyName, "DataBase", "SubjTable", False)
+    DeptTable = GetSetting(App.CompanyName, "DataBase", "DeptTable", False)
     StudmarksTable = GetSetting(App.CompanyName, "DataBase", "StudmarksTable", False)
     
     If LoginTable = False Then
@@ -34,6 +36,9 @@ Sub Main()
     End If
     If SubjTable = False Then
         Call CreateSubjTable
+    End If
+    If DeptTable = False Then
+        Call CreateDeptTable
     End If
     If StudmarksTable = False Then
         Call CreateStudmarksTable
@@ -69,10 +74,10 @@ Public Sub OpenDatabase()
         End If
     Else
         'Hide Login form
-        frmSplash.Show
-        'mdiMain.Show
-        'mdiMain.Enabled = True
-        'admCheck = "Administrator"
+        'frmSplash.Show
+        mdiMain.Show
+        mdiMain.Enabled = True
+        admCheck = "Administrator"
     End If
 End Sub
 
@@ -152,6 +157,26 @@ Private Sub CreateSubjTable()
         MsgBox "Table Subj Created Sucessfully"
     End If
 End Sub
+Private Sub CreateDeptTable()
+    On Error Resume Next
+    Dim sql As String
+    Dim Create As New ADODB.Recordset
+    Create.CursorLocation = adUseClient
+    sql = "CREATE TABLE DEPT(DEPTCODE NUMBER NOT NULL ENABLE,DEPTNAME VARCHAR2(100) NOT NULL ENABLE,DEPTSHORT VARCHAR2(10) NOT NULL ENABLE,CONSTRAINT DEPT_CON UNIQUE (DEPTNAME) ENABLE,PRIMARY KEY (DEPTCODE) ENABLE )"
+    Create.Open sql, conn, adOpenDynamic, adLockOptimistic, -1
+    
+    If Err.Number <> 0 Then
+        If Err.Number = -2147217900 Then
+            SaveSetting App.CompanyName, "DataBase", "DeptTable", True
+        Else
+            MsgBox "Error:" & Err.Description & vbCrLf & "Error Number:" & Err.Number
+        End If
+    Else
+        SaveSetting App.CompanyName, "DataBase", "DeptTable", True
+        MsgBox "Table Dept Created Sucessfully"
+    End If
+End Sub
+
 Public Sub frmColor(frm As Form)
     On Error Resume Next
     Dim ctrl As Control
@@ -210,6 +235,10 @@ Public Sub cmbSec_Load(ComboBox As ComboBox)
     ComboBox.AddItem ("B")
     ComboBox.AddItem ("C")
     ComboBox.AddItem ("D")
+    ComboBox.AddItem ("E")
+    ComboBox.AddItem ("F")
+    ComboBox.AddItem ("G")
+    ComboBox.AddItem ("H")
     ComboBox.Text = ComboBox.List(0)
     strSec = ComboBox.Text
     Exit Sub
@@ -217,26 +246,33 @@ ErrHnd:
     MsgBox Error & vbCrLf & "Error Number: " & Err.Number, vbCritical, "Error"
 End Sub
 Public Function Department(ComboBox As ComboBox) As Integer
-    If ComboBox.Text = "Computer Science and Engineering" Or ComboBox.Text = "C.S.E." Then
-        Department = 104
-    ElseIf ComboBox.Text = "Information Technology" Or ComboBox.Text = "I.T." Then
-        Department = 205
-    ElseIf ComboBox.Text = "Electronics and Communication Engineering" Or ComboBox.Text = "E.C.E." Then
-        Department = 106
-    ElseIf ComboBox.Text = "Electrical and Electronics Engineering" Or ComboBox.Text = "E.E.E." Then
-        Department = 105
-    ElseIf ComboBox.Text = "Mechanical Engineering" Or ComboBox.Text = "Mech." Then
-        Department = 114
-    End If
+    On Error Resume Next
+    Dim rsDeptCode As New ADODB.Recordset
+    Dim strSql As String
+    strSql = "select deptcode from dept where deptname='" & UCase(ComboBox.Text) & "'"
+    rsDeptCode.Open strSql, conn, adOpenDynamic, adLockOptimistic, -1
+    Department = rsDeptCode.Fields(0)
 End Function
 Public Sub cmbDept_Load(ComboBox As ComboBox)
-    ComboBox.AddItem "Computer Science and Engineering"
-    ComboBox.AddItem "Information Technology"
-    ComboBox.AddItem "Electronics and Communication Engineering"
-    ComboBox.AddItem "Electrical and Electronics Engineering"
-    ComboBox.AddItem "Mechanical Engineering"
+    On Error GoTo errHan
+    ComboBox.Clear
+    Dim rsDept As New ADODB.Recordset
+    Dim strSql As String
+    strSql = "select deptname from dept order by deptshort"
+    rsDept.Open strSql, conn, adOpenDynamic, adLockOptimistic, -1
+    rsDept.MoveFirst
+    ComboBox.FontSize = 8
+    While Not rsDept.EOF
+        ComboBox.AddItem rsDept.Fields(0)
+        rsDept.MoveNext
+    Wend
     ComboBox.Text = ComboBox.List(0)
     iDept = Department(ComboBox)
+    Exit Sub
+errHan:
+    If Err.Number = 3021 Then
+        MsgBox "No Departments are Created yet.", vbInformation, "feedback"
+    End If
 End Sub
 Public Sub cmbBatch_Load(ComboBox As ComboBox)
     For i = 2006 To 2010
@@ -349,7 +385,7 @@ Public Function GetCount(Sem As Integer, Dept As Integer, Batch As Integer, Subj
     On Error Resume Next
     Dim rs As New ADODB.Recordset
     Dim sql As String
-    sql = "Select Count(regno) from studmarks where semno=" & Sem & " and dept=" & Dept & " and batch=" & Mid(Batch, 3, 2) & " and subjcode='" & Subj & "' and (internals+externals) between " & ConditionStart & " and " & ConditionEnd & ""
+    sql = "Select Count(s1.regno) from studmarks s1,studdetails s2 where s1.regno=s2.regno and s2.sec='" & strSec & "' and s1.semno=" & Sem & " and s1.dept=" & Dept & " and s1.batch=" & Mid(Batch, 3, 2) & " and s1.subjcode='" & Subj & "' and (s1.internals+s1.externals) between " & ConditionStart & " and " & ConditionEnd & ""
     rs.Open sql, conn, adOpenDynamic, adLockOptimistic
     GetCount = rs.Fields(0)
 End Function
@@ -390,9 +426,9 @@ Public Function GetNoOfStudAppeared(Sem As Integer, Dept As Integer, Batch As In
     Dim rs As New ADODB.Recordset
     Dim strSql As String
     If iBatch > 2007 Then
-        strSql = "Select Count(regno) From studmarks Where semno=" & Sem & " and dept=" & Dept & " and batch=" & Mid(Batch, 3, 2) & " and subjcode='" & Subj & "' and grade in ('S','A','B','C','D','E','U','I','W')"
+        strSql = "Select Count(s1.regno) From studmarks s1,studdetails s2 Where s1.regno=s2.regno and s2.sec='" & strSec & "' and s1.semno=" & Sem & " and s1.dept=" & Dept & " and s1.batch=" & Mid(Batch, 3, 2) & " and s1.subjcode='" & Subj & "' and s1.grade in ('S','A','B','C','D','E','U','I','W')"
     Else
-        strSql = "Select Count(regno) From studmarks Where semno=" & Sem & " and dept=" & Dept & " and batch=" & Mid(Batch, 3, 2) & " and subjcode='" & Subj & "' and externals is not null"
+        strSql = "Select Count(s1.regno) From studmarks s1,studdetails s2 Where s1.regno=s2.regno and s2.sec='" & strSec & "' and s1.semno=" & Sem & " and s1.dept=" & Dept & " and s1.batch=" & Mid(Batch, 3, 2) & " and s1.subjcode='" & Subj & "' and s1.externals is not null"
     End If
     rs.Open strSql, conn, adOpenDynamic, adLockOptimistic
     GetNoOfStudAppeared = rs.Fields(0)
@@ -430,6 +466,7 @@ Public Function GetSubjCredit(strSubjCode As String, iDept As Integer, iBatch As
 End Function
 'Calculate GPA of a student
 Public Function CalcGPA(sRegNo As String, iSem As Integer, iDept As Integer, iBatch As Integer) As Double
+    On Error Resume Next
     Dim rs As New ADODB.Recordset
     Dim strSql As String
     strSql = "SELECT s1.regno,round(sum(s1.value*s2.credit)/(select sum(credit) FROM subj WHERE batch=" & Mid(iBatch, 3, 2) & " AND semno=" & iSem & " AND dept=" & iDept & "),2) AS GPA FROM studmarks s1,subj s2 WHERE s1.batch=" & Mid(iBatch, 3, 2) & " AND s1.semno=" & iSem & " AND s1.subjcode=s2.subjcode and s1.semno=s2.semno and s1.dept=s2.dept and s1.batch=s2.batch and s1.regno='" & sRegNo & "'  GROUP BY s1.regno"
@@ -460,6 +497,31 @@ Public Sub JuraMsgBox(strMsg As String)
     frmMsgBox.Refresh
     frmMsgBox.Show
 End Sub
+Public Function getGradeValue(strGrade As String) As Integer
+    Dim iValue As Integer
+    Select Case strGrade
+        Case "S"
+            iValue = 10
+        Case "A"
+            iValue = 9
+        Case "B"
+            iValue = 8
+        Case "C"
+            iValue = 7
+        Case "D"
+            iValue = 6
+        Case "E"
+            iValue = 5
+        Case "U"
+            iValue = 0
+        Case "I"
+            iValue = 0
+        Case "W"
+            iValue = 0
+    End Select
+    getGradeValue = iValue
+End Function
+
 
 
   

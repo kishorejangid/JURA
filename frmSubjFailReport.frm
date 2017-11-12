@@ -55,13 +55,13 @@ Begin VB.Form frmSubjFailReport
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   8388608
       TitleColor2     =   16744576
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   12582912
       BorderWidth     =   2
       Begin JURA.StylerButton cmdPrint 

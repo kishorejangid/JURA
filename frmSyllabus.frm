@@ -4,24 +4,24 @@ Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmSyllabus 
    BorderStyle     =   0  'None
    Caption         =   "Syllabus"
-   ClientHeight    =   8400
+   ClientHeight    =   8415
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   13680
+   ClientWidth     =   13815
    Icon            =   "frmSyllabus.frx":0000
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   8400
+   ScaleHeight     =   8415
    ScaleMode       =   0  'User
-   ScaleWidth      =   13680
+   ScaleWidth      =   13815
    ShowInTaskbar   =   0   'False
    Begin vkUserContolsXP.vkFrame fSyllabus 
       Height          =   8415
       Left            =   0
       TabIndex        =   1
       Top             =   0
-      Width           =   13695
-      _ExtentX        =   24156
+      Width           =   13815
+      _ExtentX        =   24368
       _ExtentY        =   14843
       Caption         =   "Syllabus"
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -30,13 +30,13 @@ Begin VB.Form frmSyllabus
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   8438015
       TitleColor2     =   33023
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       BorderWidth     =   2
       Begin JURA.StylerButton cmdClose 
@@ -86,7 +86,7 @@ Begin VB.Form frmSyllabus
          BreakCorner     =   0   'False
          BorderWidth     =   3
       End
-      Begin SHDocVwCtl.WebBrowser WebBrowser1 
+      Begin SHDocVwCtl.WebBrowser WebBrowser 
          Height          =   7215
          Left            =   360
          TabIndex        =   3
@@ -109,7 +109,7 @@ Begin VB.Form frmSyllabus
          NoFolders       =   0   'False
          Transparent     =   0   'False
          ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
-         Location        =   "http:///"
+         Location        =   ""
       End
       Begin VB.ComboBox syllabus_cmbDept 
          BeginProperty Font 
@@ -127,7 +127,7 @@ Begin VB.Form frmSyllabus
          Top             =   480
          Width           =   12015
       End
-      Begin vkUserContolsXP.vkLabel vkLabel1 
+      Begin vkUserContolsXP.vkLabel lblDept 
          Height          =   255
          Left            =   360
          TabIndex        =   0
@@ -164,9 +164,15 @@ End Sub
 
 
 Private Sub Form_Load()
-    CreateRoundRectFromWindow Me, 7, 7
-    Me.Top = (mdiMain.Height - Me.Height) / 5
+    Me.Width = Screen.Width * 0.9
+    fSyllabus.Width = Me.Width
+    cmdClose.Left = Me.Width - cmdClose.Width - 240
+    syllabus_cmbDept.Width = Me.Width - syllabus_cmbDept.Left - 360
+    fBorder.Width = Me.Width - fBorder.Left - 360
+    WebBrowser.Width = Me.Width - WebBrowser.Left - 400
+    Me.Top = 250
     Me.Left = (mdiMain.Width - Me.Width) / 2
+    CreateRoundRectFromWindow Me, 7, 7
     Me.BackColor = mdiMain.BackColor
     Call frmColor(frmSyllabus)
     syllabus_cmbDept.AddItem "Computer Science && Engineering"
@@ -187,19 +193,18 @@ End Sub
 Private Sub syllabus_cmbDept_Click()
     If syllabus_cmbDept.Text = "Computer Science && Engineering" Then
         strFileName = "" & App.Path & "\Syllabus\CSE.pdf"
-        WebBrowser1.Navigate strFileName
+        WebBrowser.Navigate strFileName
     ElseIf syllabus_cmbDept.Text = "Information Technology" Then
         strFileName = "" & App.Path & "\Syllabus\IT.pdf"
-        WebBrowser1.Navigate strFileName
+        WebBrowser.Navigate strFileName
     ElseIf syllabus_cmbDept.Text = "Electronics && Communication Engineering" Then
         strFileName = "" & App.Path & "\Syllabus\ECE.pdf"
-        WebBrowser1.Navigate strFileName
+        WebBrowser.Navigate strFileName
     ElseIf syllabus_cmbDept.Text = "Electrical && Electronics Engineering" Then
         strFileName = "" & App.Path & "\Syllabus\EEE.pdf"
-        WebBrowser1.Navigate strFileName
+        WebBrowser.Navigate strFileName
     ElseIf syllabus_cmbDept.Text = "Mechanical Engineering" Then
         strFileName = "" & App.Path & "\Syllabus\CSE.doc"
-        WebBrowser1.Navigate strFileName
-        WebBrowser1.StatusBar = True
+        WebBrowser.Navigate strFileName
     End If
 End Sub

@@ -39,13 +39,13 @@ Begin VB.Form frmEmailSettings
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   8438015
       TitleColor2     =   33023
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       BorderWidth     =   2
       Begin JURA.StylerButton cmdClose 

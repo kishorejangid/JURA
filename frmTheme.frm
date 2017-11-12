@@ -3,14 +3,14 @@ Object = "{4C5605EA-720A-490B-820A-E3CDEE939855}#1.0#0"; "vkusercontrolsxp.ocx"
 Begin VB.Form frmTheme 
    BorderStyle     =   0  'None
    Caption         =   "Form1"
-   ClientHeight    =   2880
+   ClientHeight    =   2895
    ClientLeft      =   0
    ClientTop       =   0
-   ClientWidth     =   3120
+   ClientWidth     =   3135
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   2880
-   ScaleWidth      =   3120
+   ScaleHeight     =   2895
+   ScaleWidth      =   3135
    ShowInTaskbar   =   0   'False
    Begin vkUserContolsXP.vkFrame fTheme 
       Height          =   2895
@@ -27,13 +27,13 @@ Begin VB.Form frmTheme
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleColor1     =   12640511
       TitleColor2     =   33023
       TitleGradient   =   2
-      TitleHeight     =   350
+      TitleHeight     =   360
       BorderColor     =   33023
       Begin vkUserContolsXP.vkOptionButton optGreen 
          Height          =   255
@@ -331,13 +331,5 @@ Private Sub ActiveFormClr(clr As String, lclr As String)
         Me.fTheme.BorderColor = clr
         Me.cmdClose.BorderColor = clr
         Me.cmdClose.ForeColor = clr
-        frmToday.fToday.TitleColor1 = clr
-        frmToday.fToday.TitleColor2 = lclr
-        frmToday.fToday.BorderColor = clr
-        frmToday.vkLabel1.ForeColor = clr
-        frmToday.today_label1.ForeColor = clr
-        frmToday.today_label2.ForeColor = clr
-        frmToday.today_label3.ForeColor = clr
-        frmToday.today_label4.ForeColor = clr
 End Sub
 

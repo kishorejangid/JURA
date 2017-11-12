@@ -119,6 +119,35 @@ Begin VB.Form frmDownloadResults
          Strikethrough   =   0   'False
       EndProperty
       ShowTitle       =   0   'False
+      Begin vkUserContolsXP.vkLabel lblSec 
+         Height          =   270
+         Left            =   4440
+         TabIndex        =   35
+         TabStop         =   0   'False
+         Top             =   600
+         Width           =   735
+         _ExtentX        =   1296
+         _ExtentY        =   476
+         BackColor       =   16777215
+         BackStyle       =   0
+         Caption         =   "Section:"
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+      End
+      Begin VB.ComboBox cmbMarksSec 
+         Height          =   315
+         Left            =   4440
+         TabIndex        =   34
+         Top             =   840
+         Width           =   975
+      End
       Begin vkUserContolsXP.vkCommand cmdStudName 
          Height          =   375
          Left            =   120
@@ -159,10 +188,10 @@ Begin VB.Form frmDownloadResults
       End
       Begin VB.ComboBox cmbBatch 
          Height          =   315
-         Left            =   4320
+         Left            =   2040
          TabIndex        =   22
          Top             =   840
-         Width           =   1215
+         Width           =   1095
       End
       Begin vkUserContolsXP.vkCommand cmdGo 
          Height          =   375
@@ -188,14 +217,14 @@ Begin VB.Form frmDownloadResults
          Left            =   3240
          TabIndex        =   19
          Top             =   840
-         Width           =   975
+         Width           =   1095
       End
       Begin VB.ComboBox cmbDept 
          Height          =   315
          Left            =   120
          TabIndex        =   18
          Top             =   840
-         Width           =   3015
+         Width           =   1815
       End
       Begin VB.ComboBox cmbEndRegNo 
          Height          =   315
@@ -395,10 +424,10 @@ Begin VB.Form frmDownloadResults
          BackStyle       =   0  'Transparent
          Caption         =   "Batch:"
          Height          =   255
-         Left            =   4320
+         Left            =   2160
          TabIndex        =   21
          Top             =   600
-         Width           =   735
+         Width           =   495
       End
    End
    Begin SHDocVwCtl.WebBrowser WebBrowser1 
@@ -425,7 +454,7 @@ Begin VB.Form frmDownloadResults
       NoFolders       =   0   'False
       Transparent     =   0   'False
       ViewID          =   "{0057D0E0-3573-11CF-AE69-08002B2E1262}"
-      Location        =   "http:///"
+      Location        =   ""
    End
    Begin vkUserContolsXP.vkFrame fDownloadResult 
       Height          =   8790
@@ -442,11 +471,11 @@ Begin VB.Form frmDownloadResults
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
-         Italic          =   -1  'True
+         Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderWidth     =   2
       Begin vkUserContolsXP.vkFrame vkFrame2 
          Height          =   2895
@@ -622,14 +651,14 @@ Begin VB.Form frmDownloadResults
             _ExtentY        =   4471
             _Version        =   393216
             Rows            =   1
-            Cols            =   5
+            Cols            =   6
             FixedRows       =   0
             FixedCols       =   0
             BackColorBkg    =   -2147483634
             ScrollBars      =   2
             Appearance      =   0
             _NumberOfBands  =   1
-            _Band(0).Cols   =   5
+            _Band(0).Cols   =   6
          End
       End
    End
@@ -653,6 +682,7 @@ Dim tr As MSHTML.HTMLTableRow
 Dim tc As MSHTML.HTMLTableCell
 Dim inp As MSHTML.HTMLInputElement
 Dim spa As MSHTML.HTMLSpanElement
+Dim fDC As Boolean
 
 Private Sub btnClose_Click()
     Unload Me
@@ -677,6 +707,23 @@ Private Sub cmbDept_Click()
     cmbStartRegNo.Text = cmbStartRegNo.List(Index)
     cmbEndRegNo.Text = cmbEndRegNo.List(cmbEndRegNo.ListCount - 1)
 End Sub
+
+Private Sub cmbMarksSec_Change()
+    strSec = cmbMarksSec.Text
+    Call cmbRegNo_Load(cmbStartRegNo)
+    Call cmbRegNo_Load(cmbEndRegNo)
+    cmbStartRegNo.Text = cmbStartRegNo.List(Index)
+    cmbEndRegNo.Text = cmbEndRegNo.List(cmbEndRegNo.ListCount - 1)
+End Sub
+
+Private Sub cmbMarksSec_Click()
+    strSec = cmbMarksSec.Text
+    Call cmbRegNo_Load(cmbStartRegNo)
+    Call cmbRegNo_Load(cmbEndRegNo)
+    cmbStartRegNo.Text = cmbStartRegNo.List(Index)
+    cmbEndRegNo.Text = cmbEndRegNo.List(cmbEndRegNo.ListCount - 1)
+End Sub
+
 Private Sub cmbSem_Change()
     Call cmbSem_Click
 End Sub
@@ -791,7 +838,7 @@ Private Sub cmdInsertMarks_Click()
             MSHFlexGrid1.TextMatrix(i, 1) = "0"
         End If
         If cmbBatch.Text > 2007 Then
-            strGrade = MSHFlexGrid1.TextMatrix(i, 2)
+            strGrade = MSHFlexGrid1.TextMatrix(i, 3)
             Select Case strGrade
                  Case "S"
                      iGrade = 10
@@ -811,10 +858,13 @@ Private Sub cmdInsertMarks_Click()
                      iGrade = 0
                  Case "U"
                      iGrade = 0
+                 Case "AB"
+                    iGrade = 0
             End Select
-            qr = "insert into studmarks (regno,semno,dept,batch,subjcode,internals,grade,value,result) values('" & lblRegNo.Caption & "'," & GetSubjSem(MSHFlexGrid1.TextMatrix(i, 0), iDept, Mid(iBatch, 3, 2)) & ", " & iDept & "," & Mid(lblRegNo.Caption, 4, 2) & ",'" & MSHFlexGrid1.TextMatrix(i, 0) & "'," & CInt(Trim(MSHFlexGrid1.TextMatrix(i, 1))) & ",'" & Trim(MSHFlexGrid1.TextMatrix(i, 2)) & "'," & iGrade & ",'" & Trim(MSHFlexGrid1.TextMatrix(i, 3)) & "')"
+            qr = "insert into studmarks (regno,semno,dept,batch,subjcode,internals,grade,value,result) values('" & lblRegNo.Caption & "'," & GetSubjSem(MSHFlexGrid1.TextMatrix(i, 0), iDept, Mid(iBatch, 3, 2)) & ", " & iDept & "," & Mid(lblRegNo.Caption, 4, 2) & ",'" & MSHFlexGrid1.TextMatrix(i, 0) & "'," & CInt(Trim(MSHFlexGrid1.TextMatrix(i, 2))) & ",'" & Trim(MSHFlexGrid1.TextMatrix(i, 3)) & "'," & iGrade & ",'" & Trim(MSHFlexGrid1.TextMatrix(i, 4)) & "')"
         Else
-            qr = "insert into studmarks (regno,semno,dept,batch,subjcode,internals,externals,result) values('" & lblRegNo.Caption & "'," & GetSubjSem(MSHFlexGrid1.TextMatrix(i, 0), iDept, Mid(iBatch, 3, 2)) & ", " & iDept & "," & Mid(lblRegNo.Caption, 4, 2) & ",'" & MSHFlexGrid1.TextMatrix(i, 0) & "'," & MSHFlexGrid1.TextMatrix(i, 1) & "," & MSHFlexGrid1.TextMatrix(i, 2) & ",'" & Trim(MSHFlexGrid1.TextMatrix(i, 4)) & "')"
+            qr = "insert into studmarks (regno,semno,dept,batch,subjcode,internals,externals,result) values('" & lblRegNo.Caption & "'," & GetSubjSem(MSHFlexGrid1.TextMatrix(i, 0), iDept, Mid(iBatch, 3, 2)) & ", " & iDept & "," & Mid(lblRegNo.Caption, 4, 2) & ",'" & MSHFlexGrid1.TextMatrix(i, 0) & "'," & MSHFlexGrid1.TextMatrix(i, 2) & "," & MSHFlexGrid1.TextMatrix(i, 3) & ",'" & Trim(MSHFlexGrid1.TextMatrix(i, 5)) & "')"
+            'MsgBox qr
             
         End If
         rs.Open qr, conn, adOpenDynamic, adLockOptimistic, 1
@@ -855,7 +905,7 @@ End Sub
 
 Private Sub Form_Load()
     CreateRoundRectFromWindow Me, 7, 7
-    Me.Top = 250
+    Me.Top = 100
     Me.Left = (mdiMain.Width - Me.Width) / 2
     Me.BackColor = mdiMain.BackColor
     Index = 0
@@ -864,15 +914,16 @@ Private Sub Form_Load()
     Call cmbSem_Load(cmbSem)
     Call cmbBatch_Load(cmbBatch)
     Call cmbSec_Load(cmbSec)
+    Call cmbSec_Load(cmbMarksSec)
+    strSec = cmbMarksSec.Text
     Call cmbRegNo_Load(cmbStartRegNo)
     Call cmbRegNo_Load(cmbEndRegNo)
     cmbStartRegNo.Text = cmbStartRegNo.List(Index)
     cmbEndRegNo.Text = cmbEndRegNo.List(cmbEndRegNo.ListCount - 1)
-    'cmbURL.AddItem ("http://result.annauniv.edu/result/result10.html")
-    cmbURL.AddItem ("http://218.248.20.131/UGgrade10/UGgrade2010.aspx")
-    cmbURL.AddItem ("http://218.248.20.131/UGmark2010/UCE.aspx")
+    cmbURL.AddItem ("http://218.248.20.139/ug2008/UG20082011.aspx") 'http://218.248.20.131/UG20072011/UG20072011.aspx")
+    
     cmbURL.Text = cmbURL.List(0)
-    'Reload
+    Reload
     cmdNext.Visible = True
     cmdInsertMarks.Visible = True
 End Sub
@@ -882,18 +933,19 @@ End Sub
 Private Sub Reload()
     WebBrowser1.Navigate cmbURL.Text
     
-    MSHFlexGrid1.ColWidth(0) = 1500
-    MSHFlexGrid1.ColWidth(1) = 1100
-    MSHFlexGrid1.ColWidth(2) = 1100
-    MSHFlexGrid1.ColWidth(3) = 1100
-    MSHFlexGrid1.ColWidth(4) = 1100
+    MSHFlexGrid1.ColWidth(0) = 900
+    MSHFlexGrid1.ColWidth(1) = 3500
+    MSHFlexGrid1.ColWidth(2) = 500
+    MSHFlexGrid1.ColWidth(3) = 500
+    MSHFlexGrid1.ColWidth(4) = 500
+    MSHFlexGrid1.ColWidth(5) = 500
     
     
     MSHFlexGrid1.ColAlignment(0) = flexAlignCenterCenter
-    MSHFlexGrid1.ColAlignment(1) = flexAlignCenterCenter
     MSHFlexGrid1.ColAlignment(2) = flexAlignCenterCenter
     MSHFlexGrid1.ColAlignment(3) = flexAlignCenterCenter
     MSHFlexGrid1.ColAlignment(4) = flexAlignCenterCenter
+    MSHFlexGrid1.ColAlignment(5) = flexAlignCenterCenter
 End Sub
 
 

@@ -101,7 +101,7 @@ Begin VB.Form frmSettings
       TitleColor1     =   33023
       TitleColor2     =   8438015
       TitleGradient   =   2
-      TitleHeight     =   300
+      TitleHeight     =   360
       BorderColor     =   33023
       RoundAngle      =   5
       BorderWidth     =   2
@@ -172,6 +172,11 @@ Begin VB.Form frmSettings
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
+         TitleColor1     =   8421504
+         TitleColor2     =   14737632
+         TitleGradient   =   2
+         TitleHeight     =   300
+         BorderColor     =   12632256
          Begin VB.ComboBox cmbExamYear 
             BeginProperty Font 
                Name            =   "MS Sans Serif"
